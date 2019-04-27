@@ -1,0 +1,211 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title" style="font-size: 30px">
+            Emisión unitaria de guías de despacho
+          </p>
+
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Seleccione documento de identificaci&oacute;n u OC</label>
+                    <div class="control" style="margin-top:-4%;">
+                        <label class="radio">
+                            <input style="margin-top: 17%;"
+                              type="radio"
+                              name="OCRUT"
+                              value="oc"
+                              (change)="radioButtonChange($event)"
+                              checked
+                            />
+                            N° OC
+                          </label>
+                          <label class="radio">
+                            <input style="margin-top: 17%;"
+                              type="radio"
+                              name="OCRUT"
+                              value="rut"
+                              (change)="radioButtonChange($event)"
+
+
+                            />
+                            Doc. identidad
+                          </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Ingrese documento de identificaci&oacute;n u OC</label>
+                    <div class="control">
+                        <input
+                        class="input"
+                        type="text"
+                        placeholder="{{ textInput }}"
+                        [(ngModel)]="inputOCRut"
+                        name="InputOCRut"
+                        (change)='hide()'
+                        (keyup)="activateInputIDOC($event)"
+                        (keypress)="onlyNumber($event)"
+                        id="OCRUTID"
+                        maxlength="20"
+                      />
+                      <span class="tag is-danger" *ngIf="messageValidBoolean">{{messageValid}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                        <Button style="margin-top: 27%;"  [disabled]="!btnDisabled" class="button is-success" (click)='buscarGuiasUnitarias()'>
+                            Buscar
+                            </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+
+
+
+
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+                <div class="card-content">
+                  <p class="title">
+                    Resultados de la búsqueda
+                  </p>
+
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                          <thead>
+                            <tr>
+                              <th>Seleccionar</th>
+                              <th>N° Boleta/ OC</th>
+                              <th>Nombre Cliente</th>
+                              <th>Identificador Cliente</th>
+                              <th>Nombre Despacho</th>
+                              <th>Identificador Despacho</th>
+                              <th>Modelo de Despacho</th>
+                              <th>Estado Cud</th>
+                              <th>Motivo Cud</th>
+                              <th>Estado/Motivo Reserva</th>
+                              <th>Cud</th>
+                              <th>Ubicaci&oacute;n</th>
+                              <th>SKU</th>
+                              <th>Descripci&oacute;n SKU</th>
+                              <th>Regi&oacute;n</th>
+                              <th>Comuna</th>
+                              <th>Direcci&oacute;n Despacho</th>
+                              <th>Cantidad</th>
+                              <th>Sucursal Venta</th>
+                              <th>Sucursal Stock</th>
+                              <th>Sucursal Despacho</th>
+                              <th>N° Cart&oacute;n</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr *ngFor="let gde of arrayGuiaDespachoModel ">
+                                <td><input type="checkbox" name="isSelected" [(ngModel)]="gde.isSelected" (change)="activateBtnTransport()"></td>
+                                <td>{{gde.nOrdenBoleta}}</td>
+                                <td>{{gde.buyerName}}</td>
+                                <td>{{gde.identificationNumberBuyer}}</td>
+                                <td>{{gde.dispacthClientName}}</td>
+                                <td>{{gde.idNumberDispatchClient}}</td>
+                                <td>{{gde.transferType}}</td>
+                                <td>{{gde.statusCud}}</td>
+                                <td>{{gde.reasonCud}}</td>
+                                <td>{{gde.statusReasonReservation}}</td>
+                                <td>{{gde.cud}}</td>
+                                <td>{{gde.location}}</td>
+                                <td>{{gde.sku}}</td>
+                                <td>{{gde.descriptionSku}}</td>
+                                <td>{{gde.region}}</td>
+                                <td>{{gde.commune}}</td>
+                                <td>{{gde.addressDispatch}}</td>
+                                <td>{{gde.quantity}}</td>
+                                <td>{{gde.saleBranchOffice}}</td>
+                                <td>{{gde.stockBranchOffice}}</td>
+                                <td>{{gde.dispatBranchOffice}}</td>
+                                <td>{{gde.nCarton}}</td>
+                            </tr>
+
+                          </tbody>
+                          <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                  </table>
+                </div>
+              </div>
+              <br/>
+              <br/>
+              <button class="button is-success" *ngIf="btnActivatePrint" (click)="validateOrder()">Imprimir</button>
+             <!-- <button class="button is-success" *ngIf="btnActivateTransport" (click)="buscarTransporte()">Transporte</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <modal #alertImprimir>
+    <modal-header>
+      <p>Configuraci&oacute;n de transporte</p>
+    </modal-header>
+    <modal-content>
+      <p>Se ha detectado que ingreso a la la pantalla de configuraci&oacute;n de transporte, pero no asocio ninguna orden a un transporte</p>
+      <p style="float: center;">¿Desea continuar?</p>
+    </modal-content>
+    <modal-footer>
+      <button class="button is-success" (click)="imprimirGde()" style="margin-right: 16rem;">Si</button>
+      <button class="button is-danger" (click)="cerrar()">No</button>
+    </modal-footer>
+</modal> -->
+
+
+<div class="modal" [ngClass]="{ 'is-active' : isModalActive,'backdrop':'static' }" data-keyboard="false" data-backdrop="static">
+  <div class="modal-background"></div>
+  <div class="modal-card" style="height: 90%; width: 90%;">
+    <div class="modal-card-head">
+      <p class="modal-card-title">Guia Despacho</p>
+      <button class="delete" aria-label="close" (click)="toggleModal()"></button>
+    </div>
+    <div class="modal-card-body">
+      <iframe [src]="pdfurl" height="95%" width="100%"></iframe>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="modal" [ngClass]="{ 'is-active' : isModalActive,'backdrop':'static' }" data-keyboard="false" data-backdrop="static">
+  <div class="modal-background"></div>
+  <div class="modal-card" style="height: 90%; width: 90%;">
+    <div class="modal-card-head">
+      <p class="modal-card-title">Guia Despacho</p>
+      <button class="delete" aria-label="close" (click)="toggleModal()"></button>
+    </div>
+    <div class="modal-card-body">
+      <pdf-viewer [src]="pdfSrc"
+      [render-text]="true"
+      style="display: block;"
+        ></pdf-viewer>
+    </div>
+  </div>
+</div> -->

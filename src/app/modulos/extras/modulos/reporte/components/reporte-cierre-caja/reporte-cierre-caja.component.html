@@ -1,0 +1,96 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Reporte Cierre De Caja
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form *ngIf="true">
+              <div class="form-columns">
+                <div>
+                  <div>
+                    <label class="label is-small">Fecha Desde</label>
+                    <div class="control" style="width: 23rem;">
+                      <my-date-picker disabled [options]="myDatePickerOptionsDesde" id="fechaDesde"
+                        (dateChanged)="cambiaFechaDesde($event)" placeholder=""
+                        [selDate]="fechaDesde|date: 'dd/MM/yyyy'||''"></my-date-picker>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div style="margin-left:3rem;">
+                    <label class="label is-small">Fecha Hasta</label>
+                    <div class="control" style="width: 23rem;">
+                      <my-date-picker disabled [options]="myDatePickerOptionsHasta" id="fechaHasta"
+                        (dateChanged)="cambiaFechaHasta($event)" placeholder=""
+                        [selDate]="fechaHasta|date: 'dd/MM/yyyy'||''"></my-date-picker>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div style="margin-left:2rem;">
+                    <div class="control">
+                      <button style="margin-top: 27%;" class="button is-success" (click)="buscar()">
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <input class="radio" type="radio" name="cajas"> Marcar Todas Las Cajas
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <input class="radio" type="radio" name="cajas"> Desmarcar Cajas
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <input class="radio" type="radio" name="cajas"> Marcar Sucursal Online
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <input type="checkbox" name="" id=""> Caja 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <input type="checkbox" name="" id=""> Caja 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

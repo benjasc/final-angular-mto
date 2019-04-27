@@ -1,0 +1,109 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Emisi&oacute;n gu&iacute;as flujo DVO
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+
+                <div class="form-columns">
+                    <div class="field is-horizontal" >
+                        <div class="field-label is-normal formConductor" >
+                          <label class="label">Sucursal</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select>
+                                      <option>Seleccione Conductor</option>
+                                      <option *ngFor="let itemConductor of arrayConductores" value="itemConductor.nombre">{{itemConductor.nombre}}</option>
+                                    </select>
+                                  </div>
+                            </div>
+                          </div>
+                      </div>
+                </div>
+                <br/>
+
+              <div class="form-columns">
+                  <div class="field is-horizontal" >
+                      <div class="field-label is-normal formConductor" >
+                        <label class="label">Operador Logistico</label>
+                      </div>
+                      <div class="field-body">
+                          <div class="control">
+                              <div class="select is-fullwidth">
+                                  <select>
+                                    <option>Seleccione Conductor</option>
+                                    <option *ngFor="let itemConductor of arrayConductores" value="itemConductor.nombre">{{itemConductor.nombre}}</option>
+                                  </select>
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+              </div>
+              <br/>
+              <div class="form-columns">
+                  <div class="field is-horizontal" >
+                      <div class="field-label is-normal formConductor" >
+                          <button  class="button is-success" (click)="saveTransportInfo()">Buscar</button>
+                      </div>
+                    </div>
+              </div>
+               <!-- Fin Formulario con el cual se selecciona el transporte de despacho -->
+            </form>
+
+
+
+
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+                <div class="card-content">
+                  <p class="title">
+                    Resultados de la b&uacute;squeda
+                  </p>
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                          <thead>
+                            <tr>
+                              <th>Seleccionar</th>
+                              <th>Rut</th>
+                              <th>Direcci&oacute;n</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr *ngFor="let guiaRetiro of arrayGuiaRetiro">
+                              <td><input type="checkbox" name="isSelected" [(ngModel)]="guiaRetiro.isSelected" (change)="showTransport(guiaRetiro)"></td>
+                              <td>{{guiaRetiro.guiaDespacho}}</td>
+                              <td>{{guiaRetiro.transporte}}</td>
+                            </tr>
+
+                          </tbody>
+                          <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                  </table>
+                </div>
+              </div>
+              <br/>
+              <button  class="button is-success" (click)="imprimirDocumentos()" >Emitir gu&iacute;a de despacho retiro</button>
+              <button  class="button is-success" (click)="imprimirDocumentos()" >Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

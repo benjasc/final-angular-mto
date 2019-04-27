@@ -1,0 +1,255 @@
+<div class="container is-fluid ">
+    <div class="columns">
+        <div class="column is-12">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Consulta de Estados por Despacho
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="card">
+                                    <div class="card-content ">
+                                        <div class="columns">
+                                            <div class="column">
+                                                <div class="field">
+                                                    <label class="checkbox" enable>
+                                                  <input type="checkbox" enable>
+                                                      Fecha Comprometida
+                                                </label>
+                                                </div>
+                                                <div class="field">
+                                                    <label class="checkbox" enable>
+                                                  <input type="checkbox" enable>
+                                                      Fecha de Despacho
+                                                </label>
+                                                </div>
+                                                <div class="field">
+                                                    <label class="checkbox" enable>
+                                                  <input type="checkbox" enable>
+                                                      Fecha Emisión de Guía
+                                               </label>
+                                                </div>
+                                                <div class="field">
+                                                    <label class="checkbox" enable>
+                                                  <input type="checkbox" enable>
+                                                      Fecha Planificación
+                                                </label>
+                                                </div>
+                                                <div class="field">
+                                                    <label class="checkbox" enable>
+                                                  <input type="checkbox" enable>
+                                                      Fecha de Venta
+                                                </label>
+                                                </div>
+                                            </div>
+                                            <div class="column">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Desde:</label>
+                                                    <div class="control is-disabled ">
+                                                        <my-date-picker [(ngModel)]="fecha" (dateChanged)="action()"></my-date-picker>
+                                                    </div>
+                                                    <!--<app-email></app-email>-->
+                                                </div>
+                                                <div class="field ">
+                                                    <label class="label is-small ">Hasta:</label>
+                                                    <div class="control is-disabled ">
+                                                        <my-date-picker [(ngModel)]="fecha" (dateChanged)="action()"></my-date-picker>
+                                                    </div>
+                                                    <!--<app-email></app-email>-->
+                                                </div>
+                                            </div>
+                                            <div class="column">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Suc.Venta:</label>
+                                                    <div class="select">
+                                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="field ">
+                                                    <label class="label is-small ">Camión Virtual:</label>
+                                                    <div class="control is-5">
+                                                        <input class="input" type="text" placeholder="Camión">
+                                                    </div>
+                                                    <!--<app-email></app-email>-->
+                                                </div>
+                                            </div>
+                                            <div class="column ">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Suc.Desp:</label>
+                                                    <div class="select">
+                                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div>
+                                                    <div class="field ">
+                                                    </div>
+                                                </div>
+                                                <div></div>
+                                                <div></div>
+                                                <div class="field ">
+                                                    <label class="label is-small ">Estado:</label>
+                                                    <div class="select">
+                                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="column">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Zona:</label>
+                                                    <div class="select">
+                                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="field ">
+                                                    <label class="label is-small ">Rng.Hor:</label>
+                                                    <div class="select">
+                                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="column">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Suc. Stock:</label>
+                                                    <div class="select">
+                                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="field ">
+                                                    <label class="label is-small ">Jornada:</label>
+                                                    <div class="select">
+                                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="column">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Suc. Desti:</label>
+                                                    <div class="select">
+                                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="field ">
+                                                    <a class="button is-large" (click)="buscarBT()">
+                                                        <span>Ejecutar Consulta</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">
+                                    Resultados de la búsqueda
+                                </p>
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let cuadratura of arrayCuadratura">
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                    <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+                                </table>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <button class="button is-success " (click)="imprimirGde()">Cerrar Consulta </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

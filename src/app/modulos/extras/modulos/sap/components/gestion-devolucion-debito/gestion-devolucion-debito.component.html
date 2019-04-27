@@ -1,0 +1,129 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Gesti&oacute;n Devoluci&oacute;n Debito
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+
+        <div class="card-content">
+          <div class="content">
+            <div class="form-column">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" disabled value="{{titulo}}">
+                </div>
+              </div>
+            </div>
+            <br>
+            <h4 style="text-align: center;font-size: large; color:#5bacec;font-weight: bold;">N&uacute;mero de orden de
+              compra: {{numeroOC}} </h4>
+            <p class="card-header-title">
+              Datos Acreedor SAP
+            </p>
+
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+              <thead>
+                <tr>
+                  <th>Rut del cliente</th>
+                  <th>Nombre</th>
+                  <th>Calle</th>
+                  <th>Distrito</th>
+                  <th>Regi&oacute;n</th>
+                  <th>Tel&eacute;fono</th>
+                  <th>Pa&iacute;s</th>
+                  <th>Idioma</th>
+                  <th>Cuenta asociada</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>hola que tak</td>
+                  <td> holisima</td>
+                  <td>hola dulzura</td>
+                  <td>holita</td>
+                  <td> hola hola</td>
+                  <td>que paaaa</td>
+                  <td>wenaaaaa shoro</td>
+                  <td> que onda!!</td>
+                  <td> hi!!</td>
+
+                  <!-- <td>{{ cliente.rut }}</td>
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.calle }}</td>
+                  <td>{{ cliente.distrito }}</td>
+                  <td>{{ cliente.region }}</td>
+                  <td>{{ cliente.telefono }}</td>
+                  <td>{{ cliente.pais }}</td>
+                  <td>{{ cliente.idioma }}</td>
+                  <td>{{ cliente.cuenta }}</td> -->
+
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="card-header-title">
+              Datos Bancarios
+            </p>
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+              <thead>
+                <tr>
+                  <th>Monto CAR</th>
+                  <th>Cuotas</th>
+                  <th>Primer Vencimiento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>hola</td>
+                  <td>holi</td>
+                  <td>holiwis</td>
+                  <!-- <td>{{ banco.montoCar }}</td>
+                  <td>{{ banco.cuotas }}</td>
+                  <td>{{ banco.primerVencimiento }}</td> -->
+                </tr>
+              </tbody>
+            </table>
+            <div class="field">
+              <p class="control">
+                <button class="button is-success" (click)="modificarAcreedor()">
+                  Modificar Acreedor
+                </button>
+              </p>
+            </div>
+            <br>
+            <div class="form-columns">
+              <div class="form-column">
+                <div class="field">
+                  <label class="label is-small">*Ticket Asociado</label>
+                  <div class="control">
+                    <input class="input" type="text" [(ngModel)]="numeroTicket" (keyup)="validarTicket()">
+                  </div>
+                </div>
+              </div>
+              <div class="form-columns">
+                <div class="form-column">
+                  <div class="field">
+                    <div class="control">
+                      <button class="button is-success" style="margin-top: 13%;" [disabled]="!this.isValidTicket"
+                        (click)="generarNotaCredito()">
+                        Generar Nota de Crédito
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

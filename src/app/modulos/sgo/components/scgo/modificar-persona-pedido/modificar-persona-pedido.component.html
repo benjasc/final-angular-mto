@@ -1,0 +1,60 @@
+<section class="container is-fluid ">
+    <div class="card ">
+        <div class="card-header ">
+            <div class="card-header-title">Modificar Datos Persona Pedido</div>
+        </div>
+        <div class="card-content ">
+            <div class="content">
+                <div class="columns ">
+                    <div class="column is-2 ">
+                        <div class="field ">
+                            <label class="label is-small ">Nombre</label>
+                            <div class="control ">
+                                <input class="input" type="text" [(ngModel)]="objPersona[0].nombre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-2">
+                        <div class="field ">
+                            <label class="label is-small ">Apellido</label>
+                            <div class="control">
+                                <input class="input is-disabled " type="text " [(ngModel)]="objPersona[0].apellido">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" column is-2">
+                        <div class="field ">
+                            <label class="label is-small ">Rut</label>
+                            <div class="control ">
+                                <input class="input " type="text " [(ngModel)]="objPersona[0].rut">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-2">
+                        <div class="field ">
+                            <label class="label is-small ">Telefono</label>
+                            <div class="control">
+                                <input class="input is-disabled " type="text " [(ngModel)]="objPersona[0].telefono">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" column ">
+                        <div class="field ">
+                            <label class="label is-small ">Email</label>
+                            <div class="control ">
+                                <input class="input is-disabled " type="text " [(ngModel)]="objPersona[0].email">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <a class="button is-danger">Cancelar</a>
+                <button class="button is-link" (click)="saveUser()">Guardar</button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</section>

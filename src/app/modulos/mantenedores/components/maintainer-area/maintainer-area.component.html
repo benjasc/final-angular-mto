@@ -1,0 +1,160 @@
+<div class="container is-fluid">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Area - B&uacute;squeda
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th>ID Area</th>
+                      <th>Descripci&oacute;n</th>
+                      <th>Acci&oacute;n</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let result of results">
+                      <th>{{result.idAreaProfile}}</th>
+                      <td>{{result.nameArea}}</td>
+                      <td style="width: 150px; white-space: nowrap">
+                        <div *ngIf="editable; else desactivado">
+                          <button [disabled]="false" class="button is-small is-success" (click)="searchInfoUpdate(result.idAreaProfile)">Editar</button>
+                          <button [disabled]="false" class="button is-small is-success" (click)="openMyModalDelete(result.idAreaProfile)">Eliminar</button>
+                        </div>
+                        <ng-template #desactivado>
+                          <button [disabled]="true" class="button is-small is-success" (click)="searchInfoUpdate(result.idAreaProfile)">Editar</button>
+                          <button [disabled]="true" class="button is-small is-success" (click)="openMyModalDelete(result.idAreaProfile)">Eliminar</button>
+                        </ng-template>
+                     </td>
+                  </tbody>
+                  <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td style="width: 150px; white-space: nowrap">
+                    <div *ngIf="editable; else desactivado">
+                      <button [disabled]="false" class="button is-small is-success" (click)="openMyModalInsert()" >Crear</button>
+                    </div>
+                    <ng-template #desactivado>
+                      <button [disabled]="true" class="button is-small is-success" (click)="openMyModalInsert()" >Crear</button>
+                    </ng-template>
+                  </td>
+                </tr>
+              </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <modal #myModalInsert>
+    <modal-header>
+      <h1></h1>
+    </modal-header>
+    <modal-content>
+      <accordion>
+        <accordion-group [isOpened]="true">
+          <accordion-heading>
+            <h4 class="panel-title">Crear Area</h4> <span class="accordion-icon"></span>
+          </accordion-heading>
+
+          <table class="table">
+              <tr>
+                <th>Area</th>
+                <td><input  class="input" type="text"  value="{{myModalInsertInputNameArea}}" [(ngModel)]="myModalInsertInputNameArea"  #nameAreaInsert/></td>
+              </tr>
+
+              <tr>
+                  <td></td>
+                  <td>
+                     <button class="button is-success" (click)="insert(nameAreaInsert.value)">Crear</button>
+                     <button class="button is-success" (click)="myModalInsert.close()">Cerrar</button>
+                    </td>
+                </tr>
+        </table>
+        </accordion-group>
+      </accordion>
+    </modal-content>
+  </modal>
+
+
+   <modal #myModalUpdate>
+    <modal-header>
+      <h1></h1>
+    </modal-header>
+    <modal-content>
+      <accordion>
+        <accordion-group [isOpened]="true">
+          <accordion-heading>
+            <h4 class="panel-title">Editar Area</h4> <span class="accordion-icon"></span>
+          </accordion-heading>
+          <table class="table" *ngFor="let detail of resultsDetail">
+              <tr>
+                <th>Id</th>
+                <td>{{detail.idAreaProfile}}</td>
+                <td><input  class="input" type="hidden"  value="{{detail.idAreaProfile}}" #idAreaProfileUpdate></td>
+              </tr>
+              <tr>
+                <th>Area</th>
+                <td><input  class="input" minLength="3" maxLength="200" type="text" value="{{detail.nameArea}}" #nameAreaUpdate/></td>
+              </tr>
+
+              <tr>
+                  <td></td>
+                  <td>
+                     <button class="button is-success" (click)="update(idAreaProfileUpdate.value, nameAreaUpdate.value)">Editar</button>
+                     <button class="button is-success" (click)="myModalUpdate.close()">Cerrar</button>
+                    </td>
+                </tr>
+        </table>
+        </accordion-group>
+      </accordion>
+    </modal-content>
+  </modal>
+
+
+  <modal #myModalDelete>
+    <modal-header>
+      <h1>Confirme</h1>
+    </modal-header>
+    <modal-content>
+      <input  class="input" type="hidden" value="{{idAreaProfileDeleteMyModal}}" #idAreaProfileDelete >
+     <div class="column is-6 is-offset-3">
+      <div>
+        <div>
+          <p><strong>¿ Realmente desea eliminar el area ?</strong></p>
+        </div>
+      </div>
+    </div>
+    </modal-content>
+
+    <modal-footer>
+        <button class="button is-success"  (click)="delete(idAreaProfileDelete.value)">Eliminar</button>
+        <button class="button is-success" (click)="myModalDelete.close()">Cerrar</button>
+    </modal-footer>
+
+  </modal>
+
+
+
+  <modal #modalMessage>
+      <modal-header>
+          <p>Notificacion</p>
+      </modal-header>
+      <modal-content>
+		<p></p>
+      </modal-content>
+      <modal-footer>
+        <button class="button is-success" >Cerrar</button>
+      </modal-footer>
+  </modal>

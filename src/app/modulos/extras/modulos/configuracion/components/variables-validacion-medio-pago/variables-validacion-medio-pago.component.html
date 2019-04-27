@@ -1,0 +1,75 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Variables De Validaci&oacute;n Para Medios De Pago
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div *ngIf="true">
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+                <thead>
+                  <tr>
+                    <th>Id Regla</th>
+                    <th style="width: 60rem;">Condici&oacute;n</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let v of variables; index as i">
+                    <td>{{ v.idRegla }}</td>
+                    <td style="width: 60rem;" *ngIf="v.valor === ''">{{ v.condicion }}</td>
+                    <td style="width: 60rem;" *ngIf="v.valor !== ''">{{ v.condicion }} : {{ v.valor }}</td>
+                    <td style="width: 16rem;">
+                      <button class="button is-success btn" (click)="cambiarEstado(v.activo, i, v.idRegla)"
+                        *ngIf="v.activo">
+                        Activo
+                      </button>
+
+                      <button class="button is-danger btn" (click)="cambiarEstado(v.activo, i, v.idRegla)"
+                        *ngIf="!v.activo">
+                        Inactivo
+                      </button>
+
+                      <button class="button is-success btn" style="margin-left:1rem;" *ngIf="v.editar"
+                        (click)="editar(v.valor, i, v.idRegla)">
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal #modalEditarValor>
+  <modal-header>
+    <p>Cambiar Valor</p>
+  </modal-header>
+  <modal-content>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="valorNuevo"
+      placeholder="Ingresar valor nuevo"
+      appOnlyNumber
+      maxlength="5">
+      <small class="err">{{mensaje}}</small>
+    </div>
+  </modal-content>
+  <modal-footer>
+    <button class="button is-danger" (click)="cerrar()" style="margin-right: 16rem;">Cerrar</button>
+    <button class="button is-success" (click)="cambiarValor()">Guardar</button>
+  </modal-footer>
+</modal>

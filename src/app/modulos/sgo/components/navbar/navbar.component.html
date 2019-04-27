@@ -1,0 +1,258 @@
+<nav class="navbar is-white topNav">
+    <div class="container">
+
+        <div id="topNav" class="navbar-menu">
+            <div class="navbar-start">
+                <p class="card-header-title">Sistema de Gestión de Ordenes</p>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input class="input" type="text" placeholder="OC, Rut, Email">
+                        </div>
+                        <div class=" control ">
+                            <a class="button is-info" (click)="rerender()">
+                            Buscar
+                          </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="color ">
+    <section class="container is-fluid ">
+        <div class="card ">
+            <div class="card-header ">
+                <p class="button is-info is-small">Cliente</p>
+            </div>
+            <div class="content ">
+                <div class="columns ">
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Nombre</label>
+                            <div class="control is-disabled ">
+                                <input class="input is-disabled " readonly type="text ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Rut</label>
+                            <div class="control ">
+                                <input class="input " readonly type="text ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Telefono</label>
+                            <div class="control ">
+                                <input class="input " readonly type="text ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Email</label>
+                            <div class="control ">
+                                <input class="input " readonly type="text ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Direccion</label>
+                            <div class="control ">
+                                <input class="input " readonly type="text ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <div class="card  ">
+            <div class="card-header ">
+                <p class="button is-info is-small">Productos Comprados</p>
+                <p class="button is-light is-small">Historial de Compras</p>
+            </div>
+            <div class="content ">
+                <div class="columns">
+                    <div class="column">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 3px;"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="card  ">
+            <div class="card-header ">
+                <p class="button is-info is-small">Detalle de Compra</p>
+            </div>
+            <div class="content ">
+                <div class="example-container mat-elevation-z8">
+                    <mat-table #table [dataSource]="dataSource">
+
+                        <!--- Note that these columns can be defined in any order.
+                            The actual rendered columns are set as a property on the row definition" -->
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="Fecha">
+                            <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.Fecha}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="Canal">
+                            <mat-header-cell *matHeaderCellDef> Canal </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.Canal}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="OC">
+                            <mat-header-cell *matHeaderCellDef> OC </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.OC}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="EstOC">
+                            <mat-header-cell *matHeaderCellDef> Est.OC </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.EstOC}} </mat-cell>
+                        </ng-container>
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="TipoDesp">
+                            <mat-header-cell *matHeaderCellDef> Tipo Desp. </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.TipoDesp}} </mat-cell>
+                        </ng-container>
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="FactBol">
+                            <mat-header-cell *matHeaderCellDef> Fact/Bol </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.FactBol}} </mat-cell>
+                        </ng-container>
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="FolioDte">
+                            <mat-header-cell *matHeaderCellDef> Folio DTE </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.FolioDte}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4">
+                    <div class="card  ">
+                        <div class="content ">
+                            <div class="columns">
+                                <div class="column ">
+                                    <div class="field ">
+                                        <label class="button is-info is-small ">Medio de Pago</label>
+                                        <div class="control ">
+                                            <article class="message is-info">
+                                                <div class="message-body has-text-centered">
+                                                    TARJETA RIPLEY - PAN ****3013 - COD.AUTORIZADO:13532
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column ">
+                                    <div class="field ">
+                                        <label class="label is-small ">Datos de Despacho</label>
+                                        <div class="control ">
+                                            <input class="input " readonly type="text ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column ">
+                                    <div class="field ">
+                                        <label class="label is-small ">Entrega Compromiso</label>
+                                        <div class="control ">
+                                            <input class="input " readonly type="text ">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column ">
+                                    <div class="field ">
+                                        <label class="label is-small ">Entrega conforme</label>
+                                        <div class="control ">
+                                            <input class="input " readonly type="text ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-8">
+                    <div class="card">
+                        <div class="content" style="margin-bottom: 0px;">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="field ">
+                                        <label class="button is-info is-small ">Detalle de Compra</label>
+                                        <div class="example-container2 mat-elevation-z8">
+                                            <mat-table #table [dataSource]="dataSourcee">
+
+                                                <!--- Note that these columns can be defined in any order.
+                                                The actual rendered columns are set as a property on the row definition" -->
+
+                                                <!-- Position Column -->
+                                                <ng-container matColumnDef="Codigo">
+                                                    <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.Codigo}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Name Column -->
+                                                <ng-container matColumnDef="Descripcion">
+                                                    <mat-header-cell *matHeaderCellDef> Descripcion Cantidad x Precio </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.Descripcion}} </mat-cell>
+                                                </ng-container>
+
+                                                <!-- Weight Column -->
+                                                <ng-container matColumnDef="Valor">
+                                                    <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+                                                    <mat-cell *matCellDef="let element"> {{element.Valor}} </mat-cell>
+                                                </ng-container>
+                                                <mat-header-row *matHeaderRowDef="displayedColumnss"></mat-header-row>
+                                                <mat-row *matRowDef="let row; columns: displayedColumnss;"></mat-row>
+                                            </mat-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field ">
+                                    <label class="label is-small ">SUBTOTAL</label>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field ">
+                                    <label class="label is-small ">TOTAL EXENTO</label>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field ">
+                                    <label class="label is-small ">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

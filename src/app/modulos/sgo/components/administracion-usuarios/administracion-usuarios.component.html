@@ -1,0 +1,92 @@
+<section class="container is-fluid ">
+    <div class="card ">
+        <div class="card-header ">
+            <div class="card-header-title">Administracion de Usuarios</div>
+        </div>
+        <div class="card-content ">
+            <div class="content">
+                <div class="columns ">
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Id Usuario</label>
+                            <div class="control is-disabled ">
+                                <input class="input is-disabled " type="text ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Nombre</label>
+                            <div class="control is-disabled ">
+                                <input class="input is-disabled " type="text ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Contraseña</label>
+                            <div class="control ">
+                                <input class="input " type="password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Sucursal</label>
+                            <div class="control ">
+                                <div class="select">
+                                    <select>
+                                              <option>Select dropdown</option>
+                                              <option>With options</option>
+                                            </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+
+                        <table style="padding-top: 3px;" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+                            <thead>
+                                <tr>
+                                    <th>ID Permiso</th>
+                                    <th>Accion</th>
+                                    <th>Acceso</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let gde of arrayGuiaDespacho">
+                                    <td>lo que sea</td>
+                                    <td>sdfsdf</td>
+                                    <td>sdfsdf</td>
+                                    <td>
+                                        <a class="button is-small is-success" (click)='buscarTransporte()'>Transporte</a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                        </table>
+                    </div>
+
+                </div>
+                <br><br>
+                <a class="button is-danger">Cancelar</a>
+                <a class="button is-link">Guardar</a>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+<!-- <p> se utiliza para renderizar la tabla
+            <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
+              Rerender
+            </button>
+          </p> -->

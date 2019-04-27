@@ -1,0 +1,197 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Emisi&oacute;n gu&iacute;as de retiro
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small"> Ingrese RUT/DNI u OC del cliente</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Formulario por el cual se realiza la busqueda de guias de retiro mediante rut y orden de compra-->
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small"><!-- Seleccione Rut u OC --></label>
+                    <div class="control">
+                        <label class="radio">
+                            <input style="margin-top: 17%;"
+                              type="radio"
+                              name="OCRUT"
+                              value="oc"
+                              (change)="radioButtonChange($event)"
+                              checked
+                            />
+                            N° OC
+                          </label>
+                          <label class="radio">
+                            <input style="margin-top: 17%;"
+                              type="radio"
+                              name="OCRUT"
+                              value="rut"
+                              (change)="radioButtonChange($event)"
+
+                            />
+                            RUT/DNI
+                          </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small"><!-- Ingrese Rut/DNI u OC --></label>
+                    <div class="control">
+                        <input
+                        class="input"
+                        type="text"
+                        placeholder="{{ textInput }}"
+                        [(ngModel)]="inputOCRut"
+                        name="InputOCRut"
+                        (change)='hide()'
+                        id="OCRUTID"
+                      />
+                      <span class="tag is-danger" *ngIf="messageValidBoolean">{{messageValid}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                        <Button style="margin-top: 6%;" class="button is-success" (click)='buscarGuiasRetiro()'>
+                            Buscar
+                            </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+              <!-- Fin Formulario por el cual se realiza la busqueda de guias de retiro mediante rut y orden de compra-->
+              <!-- Formulario con el cual se selecciona el transporte de despacho -->
+            <form *ngIf="showTransportCompany">
+              <div class="form-columns">
+                  <div class="field">
+                    <div class="form-column">
+                      <label class="label is-small">Seleccione transporte de despacho</label>
+                    </div>
+                  </div>
+              </div>
+              <div class="form-columns" >
+                  <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Transporte</label>
+                      </div>
+                      <div class="field-body">
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select>
+                                  <option>Seleccione Transporte</option>
+                                  <option *ngFor="let itemTransporte of arrayCompaniaTransporte" value="itemTransporte.razonSocial">{{itemTransporte.razonSocial}}</option>
+                                </select>
+                              </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field is-horizontal" >
+                        <div class="field-label is-normal formConductor" >
+                          <label class="label">Conductor</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select>
+                                      <option>Seleccione Conductor</option>
+                                      <option *ngFor="let itemConductor of arrayConductores" value="itemConductor.nombre">{{itemConductor.nombre}}</option>
+                                    </select>
+                                  </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="field is-horizontal">
+                          <div class="field-label is-normal formConductor">
+                            <label class="label">Patente</label>
+                          </div>
+                          <div class="field-body">
+                              <div class="control">
+                                  <div class="select is-fullwidth">
+                                      <select>
+                                        <option>Seleccione Patente</option>
+                                        <option *ngFor="let itemCamion of arrayMedioTransporte" value="itemCamion.patente">{{itemCamion.patente}}</option>
+                                      </select>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+              </div>
+
+               <!-- Fin Formulario con el cual se selecciona el transporte de despacho -->
+
+               <!-- Boton para guardar -->
+               <div class="form-columns">
+                  <div class="field">
+                    <div class="form-column">
+                      <button  class="button is-success" (click)="saveTransportInfo()">Guardar</button>
+                    </div>
+                  </div>
+              </div>
+               <!-- Fin botón guardar-->
+            </form>
+
+
+
+
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+                <div class="card-content">
+                  <p class="title">
+                    Resultados de la búsqueda
+                  </p>
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                          <thead>
+                            <tr>
+                              <th>Seleccionar</th>
+                              <th>Guia Despacho</th>
+                              <th>Transporte</th>
+                              <th>Conductor</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr *ngFor="let guiaRetiro of arrayGuiaRetiro">
+                              <td><input type="checkbox" name="isSelected" [(ngModel)]="guiaRetiro.isSelected" (change)="showTransport(guiaRetiro)"></td>
+                              <td>{{guiaRetiro.guiaDespacho}}</td>
+                              <td>{{guiaRetiro.transporte}}</td>
+                              <td>{{guiaRetiro.conductor}}</td>
+                            </tr>
+
+                          </tbody>
+                          <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                  </table>
+                </div>
+              </div>
+              <br/>
+              <button  class="button is-success" (click)="imprimirDocumentos()" *ngIf="showBtnImprimir">Emitir gu&iacute;a de despacho retiro</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

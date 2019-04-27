@@ -1,0 +1,140 @@
+<section class="container is-fluid ">
+    <div class="card ">
+        <div class="card-header ">
+            <div class="card-header-title">Gestion Backorders</div>
+        </div>
+        <div class="card-content ">
+            <div class="content">
+                <div class="columns ">
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Canal de Venta</label>
+                            <div class="control ">
+                                <div class="select">
+                                    <select [(ngModel)]="selectCanalVentas">
+                                            <option value='0' disabled>Seleccione</option>
+                                              <option *ngFor="let element of canalVentas"  [value]="element.id" >{{element.tienda}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Canal de Despacho o Entraga</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select [(ngModel)]="selectCanalVentaDespacho "> 
+                                        <option value='0' disabled>Seleccione</option>
+                                            <option *ngFor="let element of canalDespachos" [value]="element.id" >{{element.tienda}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Modelo de Despacho</label>
+                            <div class="control ">
+                                <div class="select">
+                                    <select [(ngModel)]="selectModeloDespacho">
+                                            <option value='0' disabled>Seleccione</option>
+                                            <option *ngFor="let element of modeloDespachos"  [value]="element.id">{{element.tienda}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small ">Motivo Backorder</label>
+                            <div class="control ">
+                                <div class="select">
+                                    <select [(ngModel)]="selectMotivoBackorder">
+                                            <option value='0' disabled>Seleccione</option>
+                                            <option *ngFor="let element of motivosBackorder"  [value]="element.id">{{element.tienda}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns is-centered">
+
+                    <div class="column is-3">
+                        <div class="field">
+                            <label for="" class="label is-small">Desde</label>
+                            <div class="control">
+                                <my-date-picker disabled></my-date-picker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="field">
+                            <label for="" class="label is-small">Hasta</label>
+                            <div class="control">
+                                <my-date-picker disabled></my-date-picker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-2">
+                        <div class="field">
+                            <div class="control" style="margin-top: 21px;">
+                                <a class="button is-info is-fullwidth" type="button " (click)="verBackorder()">Buscar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>N° OC</th>
+                                    <th>Modelo de Despacho</th>
+                                    <th>Motivo Backorder</th>
+                                    <th>Fecha Backorder</th>
+                                    <th>SKU</th>
+                                    <th>Desc. SKU</th>
+                                    <th>Cantidad</th>
+                                    <th>Detalle</th>
+                                    <th>Gestion</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let element of listaBackorders">
+                                    <td>{{element.idorder}}</td>
+                                    <td>{{element.modeloDespacho}}</td>
+                                    <td>{{element.motivoBackorder}}</td>
+                                    <td>{{element.created_at}}</td>
+                                    <td>{{element.sku}}</td>
+                                    <td>{{element.producto}}</td>
+                                    <td>{{element.amount}}</td>
+                                    <td><a class="button is-small is-info">Detalle</a></td>
+                                    <td><a class="button is-small is-info">Gestionar</a></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+                <br><br>
+                <a class="button is-danger">Salir</a>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+<!-- <p> se utiliza para renderizar la tabla
+            <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
+              Rerender
+            </button>
+          </p> -->

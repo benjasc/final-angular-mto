@@ -1,0 +1,188 @@
+<section class="container is-fluid ">
+    <div class="card ">
+        <div class="card-header ">
+            <div class="card-header-title">Registro de Ticket</div>
+        </div>
+        <div class="card-content ">
+            <div class="content">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="columns ">
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Ticket</label> TI1202471239
+
+                                </div>
+                            </div>
+
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Fecha</label> 13-02-2019
+
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Hora</label> 15:50
+
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Responsable</label> Isabel Gonzalez
+
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Rol</label> Ejec. Atención al Cliente
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-3 ">
+                                <div class="field ">
+                                    <label class="label is-small ">DNI</label>
+                                    <div class="control">
+                                        <input class="input " type="text ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-3 ">
+                                <div class="field ">
+                                    <label class="label is-small ">CUD</label>
+                                    <div class="control">
+                                        <input class="input " type="text ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-2">
+                                <div class="field">
+                                    <div class="control" style="margin-top: 21px;;">
+                                        <a class="button is-info is-fullwidth" type="button ">Buscar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-content">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 10px;" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>DNI</th>
+                                    <th>CUD</th>
+                                    <th>Desc. Articulo</th>
+                                    <th>Fecha Venta</th>
+                                    <th>S. de Venta</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let element of listaBackorders">
+                                    <td>{{ element.idorder }}</td>
+                                    <td>{{ element.modeloDespacho }}</td>
+                                    <td>{{ element.motivoBackorder }}</td>
+                                    <td>{{ element.created_at }}</td>
+                                    <td>{{ element.sku }}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="columns">
+                            <div class="column is-7 ">
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="field ">
+                                            <label class="label is-small ">Nombre</label>
+                                            <div class="control">
+                                                <input class="input " type="text ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column ">
+                                        <div class="field ">
+                                            <label class="label is-small ">Apellido Paterno</label>
+                                            <div class="control">
+                                                <input class="input " type="text ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="columns">
+                                    <div class="column ">
+                                        <div class="field ">
+                                            <label class="label is-small ">Apellido Materno</label>
+                                            <div class="control">
+                                                <input class="input " type="text ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column ">
+                                        <div class="field ">
+                                            <label class="label is-small ">Email</label>
+                                            <div class="control">
+                                                <input class="input " type="text ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="columns">
+                                    <div class="column ">
+                                        <div class="field ">
+                                            <label class="label is-small ">Telefono</label>
+                                            <div class="control">
+                                                <input class="input " type="text ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column ">
+                                        <div class="field ">
+                                            <label class="label is-small ">Direccion</label>
+                                            <div class="control">
+                                                <input class="input " type="text ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-5 is-flex">
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 10px;" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Descripcion</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <a class="button is-danger ">Cancelar</a>
+                <a class="button is-info ">Siguiente</a>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>

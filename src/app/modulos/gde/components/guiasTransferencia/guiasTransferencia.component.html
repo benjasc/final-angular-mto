@@ -1,0 +1,102 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Guías de transferencia
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">N° Manifiesto</label>
+                    <div class="control">
+                        <input
+                        class="input"
+                        type="text"
+                        placeholder="{{ textInput }}"
+                        [(ngModel)]="inputOCRut"
+                        name="InputOCRut"
+                        (change)='hide()'
+                        id="OCRUTID"
+                      />
+                      <span class="tag is-danger" *ngIf="messageValidBoolean">{{messageValid}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                        <Button style="margin-top: 14%;" class="button is-success" (click)='buscarManifiesto()'>
+                            Buscar Manifiesto
+                        </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+
+
+
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+                <div class="card-content">
+                  <p class="title">
+                    Resultados de la búsqueda
+                  </p>
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                          <thead>
+                            <tr>
+                              <th>Seleccionar</th>
+                              <th>Sucursal Origen</th>
+                              <th>Codigo Destino</th>
+                              <th>Descripcion Destino</th>
+                              <th>Codigo Manifiesto</th>
+                              <th>Cantidad Cud</th>
+                              <th>Bultos</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr *ngFor="let guiaTransferencia of arrayGuiaTransferencia">
+                              <td><input type="checkbox" name="isSelected" [(ngModel)]="guiaTransferencia.isSelected"></td>
+                              <td>{{guiaTransferencia.sucursalOrigen}}</td>
+                              <td>{{guiaTransferencia.codigoDestino}}</td>
+                              <td>{{guiaTransferencia.descripcionDestino}}</td>
+                              <td>{{guiaTransferencia.codigoManifiesto}}</td>
+                              <td>{{guiaTransferencia.cantidadCud}}</td>
+                              <td>{{guiaTransferencia.bultos}}</td>
+                              <td>
+                                <a class="button is-small is-success" (click)='buscarTransporte()' >Transporte</a>
+                              </td>
+                            </tr>
+
+                          </tbody>
+                          <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                  </table>
+                </div>
+              </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

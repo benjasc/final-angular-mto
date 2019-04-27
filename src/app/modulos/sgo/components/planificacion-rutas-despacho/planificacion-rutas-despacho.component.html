@@ -1,0 +1,69 @@
+<div class="container is-fluid ">
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                Planificación de Rutas de Despacho
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <div class="columns">
+                    <div class="column is-2">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="field ">
+                                    <label class="checkbox" enable>
+                                          <input type="checkbox" enable>
+                                              Fecha Despacho
+                                        </label>
+                                </div>
+                                <div class="field ">
+                                    <label class="checkbox" enable>
+                                          <input type="checkbox" enable>
+                                              Fecha Planificación
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="field ">
+                                            <label class="label is-small ">Fecha Desde:</label>
+                                            <div class="control is-disabled ">
+                                                <my-date-picker [(ngModel)]="fecha" (dateChanged)="action()"></my-date-picker>
+                                            </div>
+                                            <!--<app-email></app-email>-->
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="field ">
+                                            <label class="label is-small ">Fecha Hasta:</label>
+                                            <div class="control is-disabled ">
+                                                <my-date-picker [(ngModel)]="fecha" (dateChanged)="action()"></my-date-picker>
+                                            </div>
+                                            <!--<app-email></app-email>-->
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="field ">
+                                            <label class="label is-small ">Tipo de Venta:</label>
+                                            <div class="select is-disabled">
+                                                <select>
+                                                  <option>1-BT; 3-INT</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

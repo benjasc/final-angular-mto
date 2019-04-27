@@ -1,0 +1,54 @@
+<section class="container ">
+    <div class="card ">
+        <div class="card-header ">
+            <div class="card-header-title">Mantenedor de Motivos</div>
+        </div>
+        <div class="card-content ">
+            <div class="content">
+
+                <div class="columns  is-centered">
+
+                    <div class="column is-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="field has-addons">
+                                    <div class="control">
+                                        <input class="input is-small" type="text" placeholder="Nuevo Motivo">
+                                    </div>
+                                    <div class="control">
+                                        <a class="button is-info is-small">
+                                                Agregar
+                                              </a>
+                                    </div>
+                                </div>
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Motivos</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Motivo 1</td>
+                                            <td><a class="button is-link is-small">Editar</a> </td>
+                                            <td><a class="button is-danger is-small">Eliminar</a> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <a class="button ">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>

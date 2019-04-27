@@ -1,0 +1,109 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Reglas Para Generaci&oacute;n De DTE Autom&aacute;tico
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div class="form-columns">
+              <div class="form-column">
+                <div class="field">
+                  <p class="control">
+                    <input type="checkbox" name="" id="">Reglas de precio
+                  </p>
+                </div>
+              </div>
+              <div class="form-column">
+                <div class="field">
+                  <p class="control">
+                    <button class="button is-success btn" (click)="abrirModalEditar()">
+                      Editar Factor
+                    </button>
+                  </p>
+
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="form-columns">
+              <div class="form-column">
+                <div class="field">
+                  <p class="control">
+                    <input type="checkbox" name="" id="">Listas SKU
+                  </p>
+                </div>
+              </div>
+              <div class="form-column">
+                <div class="field">
+                  <p class="control">
+                    <button class="button is-success btn" (click)="paginaModificar()">
+                      Modificar
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="form-columns">
+              <div class="form-column">
+                <div class="field">
+                  <p class="control">
+                    <input type="checkbox" name="" id="">Todo manual
+                  </p>
+                </div>
+              </div>
+              Si activas esta opci&oacute;n todas las ordenes pasar&aacute;n a confirmaci&oacute;n Manual DTE
+            </div>
+            <br>
+            <div class="form-columns">
+              <div class="form-column">
+                <div class="field">
+                  <p class="control">
+                    <button class="button is-success btn" style="margin-left: 30rem;">
+                      Cancelar
+                    </button>
+                  </p>
+                </div>
+              </div>
+              <div class="form-column">
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-success btn">
+                      Guardar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal #modalEditarValor>
+  <modal-header>
+    <p class="tituloModal">Editar Regla de Precio</p>
+  </modal-header>
+  <modal-content>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="valorNuevo" placeholder="Ingresar valor nuevo" appOnlyNumber
+        maxlength="5">
+      <small class="err">{{mensaje}}</small>
+    </div>
+  </modal-content>
+  <modal-footer>
+    <button class="button is-danger" (click)="cerrar()" style="margin-right: 16rem;">Cerrar</button>
+    <button class="button is-success" (click)="cambiarValor()">Guardar</button>
+  </modal-footer>
+</modal>

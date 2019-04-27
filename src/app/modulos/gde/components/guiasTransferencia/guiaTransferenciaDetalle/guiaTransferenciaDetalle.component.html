@@ -1,0 +1,166 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Detalle emisión masiva de guías de despacho
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">N° de manifiesto</label>
+              </div>
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <label class="label">123123</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Sucursal de despacho</label>
+              </div>
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <label class="label">adasds</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Transporte</label>
+                </div>
+                <div class="field-body">
+                  <div class="field is-narrow">
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select>
+                          <option>Seleccione un transporte</option>
+                          <option *ngFor="let itemTransporte of arrayTransportCompany" value="itemTransporte.razonSocial">{{itemTransporte.razonSocial}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">Conductor</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field is-narrow">
+                      <div class="control">
+                        <div class="select is-fullwidth">
+                          <select>
+                            <option>Seleccione un conductor</option>
+                            <option *ngFor="let itemConductor of arrayConductores" value="itemConductor.nombre">{{itemConductor.nombre}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                      <label class="label">Patente</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field is-narrow">
+                        <div class="control">
+                          <div class="select is-fullwidth">
+                            <select>
+                              <option>Seleccione una patente</option>
+                              <option *ngFor="let itemCamion of arrayCamion" value="itemCamion.patente">{{itemCamion.patente}}</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label"></label>
+                      </div>
+                      <div class="field-body">
+                        <div class="field is-narrow">
+                          <div class="control">
+                              <Button class="button is-success" (click)="guardarCargaTransferencia()">
+                                 Guardar
+                                </Button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+
+            <br />
+            <br />
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+              <div class="card-content">
+                <p class="title">
+                  Resultados de la búsqueda
+                </p>
+                <table
+                  datatable
+                  [dtOptions]="dtOptions"
+                  [dtTrigger]="dtTrigger"
+                  class="row-border hover table"
+                >
+                  <thead>
+                    <tr>
+                      <th>Rut Cliente</th>
+                      <th>Cantidad</th>
+                      <th>Sucursal Despacho</th>
+                      <th>N° Carga Transferencia o Manifiesto</th>
+                      <th>Sku</th>
+                      <th>Descripcion SKU</th>
+                      <th>N° CUD</th>
+                      <th>Región</th>
+                      <th>Comuna</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr *ngFor="let detalleGTransferencia of arrayGuiaTransferenciaDetalle">
+                      <td>{{ detalleGTransferencia.rutCliente }}</td>
+                      <td>{{ detalleGTransferencia.cantidad }}</td>
+                      <td>{{ detalleGTransferencia.sucursalDespacho }}</td>
+                      <td>{{ detalleGTransferencia.nDespachoManifiesto }}</td>
+                      <td>{{ detalleGTransferencia.sku }}</td>
+                      <td>{{ detalleGTransferencia.descripcionSku }}</td>
+                      <td>{{ detalleGTransferencia.cud }}</td>
+                      <td>{{ detalleGTransferencia.region }}</td>
+                      <td>{{ detalleGTransferencia.comuna }}</td>
+                      <td>{{ detalleGTransferencia.estado }}</td>
+                    </tr>
+                  </tbody>
+                  <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+                </table>
+              </div>
+            </div>
+            <br />
+            <br />
+            <Button class="button is-success" (click)="volver()">
+              Volver
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

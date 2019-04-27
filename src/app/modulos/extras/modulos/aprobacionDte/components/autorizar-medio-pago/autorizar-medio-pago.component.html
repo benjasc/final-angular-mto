@@ -1,0 +1,103 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Autorizar Medios De Pago
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">N&uacute;mero OC</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Número OC" maxlength="20" [(ngModel)]="numeroNC"
+                        name="NumeroNC" appOnlyNumber>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Tipo Documento</label>
+                    <div class="control">
+                      <div class="select">
+                        <select name="documentType" [(ngModel)]="tipoDocumento">
+                          <option [value]="0">TODOS LOS DOCUMENTOS</option>
+                          <option value="1">BOLETA</option>
+                          <option value="2">FACTURA</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <button style="margin-top: 27%;" class="button is-success" (click)="buscar()">
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-columns">
+                <div class="form-column">
+                  <div class="field">
+                    <div class="control">
+                      <button class="button is-success" (click)="aprobar()" [disabled]="isVacio">
+                        Aprobar
+                      </button>
+                      <button class="button is-danger" (click)="rechazar()" [disabled]="isVacio"
+                        style="margin-left:3rem;">
+                        Rechazar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+              <thead>
+                <tr>
+                  <th>Selección</th>
+                  <th>Orden de Compra</th>
+                  <th>Nombre Comprador</th>
+                  <th>Fecha Compra</th>
+                  <th>Fecha Entrega</th>
+                  <th>Estado OC</th>
+                  <th>Tipo Documento</th>
+                  <th>Tipo OC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let oc of ordenes">
+                  <td><input type="checkbox" [value]="check"
+                      (change)="cambiarEstado(oc.seleccionado = !oc.seleccionado, oc)"
+                      [checked]="oc.seleccionado == true"></td>
+                  <td>{{ oc.orden }}</td>
+                  <td>{{ oc.nombreComprador }}</td>
+                  <td>{{ oc.fechaCompra }}</td>
+                  <td>{{ oc.fechaEntrega}}</td>
+                  <td>{{ oc.estadoOC}}</td>
+                  <td>{{ oc.tipoDocumento}}</td>
+                  <td>{{ oc.tipoOC }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

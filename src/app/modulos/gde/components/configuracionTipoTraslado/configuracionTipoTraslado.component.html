@@ -1,0 +1,123 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+           Mantenedor tipo de traslado
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+                <div class="form-columns">
+                    <div class="field is-horizontal" >
+                        <div class="field-label" >
+                          <label class="label">Tipo despacho</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select>
+                                      <option>Seleccione Conductor</option>
+                                      <option *ngFor="let itemConductor of arrayConductores" value="itemConductor.nombre">{{itemConductor.nombre}}</option>
+                                    </select>
+                                  </div>
+                            </div>
+                          </div>
+                      </div>
+                </div>
+                <br/>
+
+              <div class="form-columns">
+                  <div class="field is-horizontal" >
+                      <div class="field-label" >
+                        <label class="label">Tipo de gu&iacute;a</label>
+                      </div>
+                      <div class="field-body">
+                          <div class="control">
+                              <div class="select is-fullwidth">
+                                  <select>
+                                    <option>Seleccione Conductor</option>
+                                    <option *ngFor="let itemConductor of arrayConductores" value="itemConductor.nombre">{{itemConductor.nombre}}</option>
+                                  </select>
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+              </div>
+              <br/>
+              <div class="form-columns">
+                  <div class="field is-horizontal" >
+                      <div class="field-label is-normal " >
+                        <label class="label">Tipo de Traslado</label>
+                      </div>
+                      <div class="field-body">
+                          <div class="control">
+                              <div class="select is-fullwidth">
+                                  <select>
+                                    <option>Seleccione Conductor</option>
+                                    <option *ngFor="let itemConductor of arrayConductores" value="itemConductor.nombre">{{itemConductor.nombre}}</option>
+                                  </select>
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+              </div>
+              <br/>
+              <br/>
+              <div class="form-columns">
+                  <div class="field is-horizontal" >
+                      <div class="field-label is-normal " >
+                          <button  class="button is-success" (click)="saveTransportInfo()">Guardar</button>
+                          <button  class="button is-success" (click)="saveTransportInfo()">Limpiar Campos</button>
+                      </div>
+                    </div>
+              </div>
+               <!-- Fin Formulario con el cual se selecciona el transporte de despacho -->
+            </form>
+
+
+
+
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+                <div class="card-content">
+                  <label > Traslados configurados</label>
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                          <thead>
+                            <tr>
+                              <th>Tipo de despacho</th>
+                              <th>Tipo de gu&iacute;a</th>
+                              <th>Tipo traslado</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr *ngFor="let guiaRetiro of arrayGuiaRetiro">
+                              <td>{{guiaRetiro.guiaDespacho}}</td>
+                              <td>{{guiaRetiro.transporte}}</td>
+                              <td>{{guiaRetiro.transporte}}</td>
+                            </tr>
+
+                          </tbody>
+                          <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

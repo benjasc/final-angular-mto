@@ -1,0 +1,91 @@
+<section class="container is-fluid ">
+    <div class="card ">
+      <div class="card-header ">
+        <div class="card-header-title">Anulación de Reservas</div>
+      </div>
+      <div class="card-content ">
+        <div class="content">
+          <div class="card">
+            <div class="card-content">
+              <div class="columns is-centered ">
+               
+                <div class="column is-3 ">
+                  <div class="field ">
+                    <label class="label is-small ">DNI/RUC Cliente</label>
+                    <div class="control ">
+                      <input class="input" type="text" />
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-3 ">
+                  <div class="field ">
+                    <div class="control" style="margin-top: 22px;">
+                      <input class="input" type="text" />
+                    </div>
+                  </div>
+                </div>
+                <div class="column is-2">
+                    <div class="field">
+                        <div class="control" style="margin-top: 22px;">
+                            <a class="button is-info is-fullwidth" type="button ">Buscar</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="card">  
+            <div class="card-content">
+              <table
+                datatable
+                [dtOptions]="dtOptions[0]"
+                [dtTrigger]="dtTrigger"
+                style="padding-top: 10px;"
+                class="row-border hover table"
+                width="100%"
+              >
+                <thead>
+                  <tr>
+                    <th>Seleccionar</th>
+                    <th>CUD</th>
+                    <th>Orden de Compra</th>
+                    <th>SKU</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>Bodega</th>
+                  </tr>
+                </thead>
+  
+                <tbody>
+                  <tr *ngFor="let element of listaBackorders">
+                    <td>{{ element.idorder }}</td>
+                    <td>{{ element.modeloDespacho }}</td>
+                    <td>{{ element.motivoBackorder }}</td>
+                    <td>{{ element.created_at }}</td>
+                    <td>{{ element.sku }}</td>
+                    <td>{{ element.sku }}</td>
+                    <td>{{ element.sku }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br />
+  
+          <br />
+          <br />
+          <a class="button is-light  ">Limpiar</a>
+          <a class="button is-light  ">Anular Reserva</a>
+          <a class="button is-danger ">Finalizar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- <p> se utiliza para renderizar la tabla
+          <button type="button " class="btn waves-effect waves-light blue " (click)="rerender() ">
+            Rerender
+          </button>
+        </p> -->
+  

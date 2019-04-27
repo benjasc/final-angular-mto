@@ -1,0 +1,148 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Generaci&oacute;n De NC Manual
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <br><br>
+        <h4 style="text-align: center;font-size: large; color:#5bacec;font-weight: bold;">N&uacute;mero OC: {{oc}} |
+          Monto Total: ${{montoTotal}} | C&oacute;digo Pa&iacute;s: {{codPais}} </h4>
+        <br><br>
+
+        <accordion>
+          <accordion-group [isOpened]="false">
+            <accordion-heading>
+              <h4 class="panel-title">Datos Del Cliente</h4> <span class="accordion-icon"></span>
+            </accordion-heading>
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <tr>
+                  <td>Correlativo Ventas</td>
+                  <td>{{cliente.correlativoVentas}}</td>
+                </tr>
+                <tr>
+                  <td>Rut Cliente</td>
+                  <td>{{ cliente.rutCliente }}</td>
+                </tr>
+                <tr>
+                  <td>Nombre Cliente</td>
+                  <td>{{ cliente.nombreCliente }}</td>
+                </tr>
+                <tr>
+                  <td>E-mail Cliente</td>
+                  <td>{{ cliente.mailCliente }}</td>
+                </tr>
+                <tr>
+                  <td>Tipo Documento</td>
+                  <td>{{ cliente.tipoDocumento }}</td>
+                </tr>
+                <tr>
+                  <td>Tipo Orden</td>
+                  <td>{{ cliente.tipoOrden }}</td>
+                </tr>
+                <tr>
+                  <td>Direcci&oacute;n</td>
+                  <td>{{ cliente.direccion }}</td>
+                </tr>
+                <tr>
+                  <td>Tel&eacute;fono Despacho</td>
+                  <td>{{ cliente.telefonoDespacho }}</td>
+                </tr>
+                <tr>
+                  <td>Tel&eacute;fono Cliente</td>
+                  <td>{{ cliente.telefonoCliente }}</td>
+                </tr>
+              </table>
+          </accordion-group>
+
+          <accordion-group [isOpened]="false">
+              <accordion-heading>
+                <h4 class="panel-title">Rechazo Total Stock</h4> <span class="accordion-icon"></span>
+              </accordion-heading>
+              <div class="card">
+                <div class="card-body">
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+                    <thead>
+                      <tr>
+                        <th>SKU</th>
+                        <th>Descripci&oacute;n</th>
+                        <th>Precio U</th>
+                        <th>Cantidad</th>
+                        <th>Cant. NC</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr  *ngFor="let rechazoTotalStock of rechazosTotalStock">
+                        <td>{{ rechazoTotalStock.sku }}</td>
+                        <td>{{ rechazoTotalStock.descripcion }}</td>
+                        <td>{{ rechazoTotalStock.precioUnitario }}</td>
+                        <td>{{ rechazoTotalStock.cantidad }}</td>
+                        <td>{{ rechazoTotalStock.cantidadNC }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <br>
+              <div class="control">
+                <button class="button is-success" style ="margin-left: 37rem;" (click)="confirmarRechazoTotal()">
+                  Confirmar
+                </button>
+              </div>
+            </accordion-group>
+  
+            <accordion-group [isOpened]="false">
+              <accordion-heading>
+                <h4 class="panel-title">Rechazo Parcial Stock</h4> <span class="accordion-icon"></span>
+              </accordion-heading>
+              <div class="card">
+                <div class="card-body">
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+                    <thead>
+                      <tr>
+                        <th>SKU</th>
+                        <th>Descripci&oacute;n</th>
+                        <th>Precio U</th>
+                        <th>Cantidad</th>
+                        <th>Cant. NC</th>
+                        <th>Selecci&oacute;n</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr  *ngFor="let rechazoParcialStock of rechazosParcialStock">
+                        <td>{{ rechazoParcialStock.sku }}</td>
+                        <td>{{ rechazoParcialStock.descripcion }}</td>
+                        <td>{{ rechazoParcialStock.precioUnitario }}</td>
+                        <td>{{ rechazoParcialStock.cantidad }}</td>
+                        <td>{{ rechazoParcialStock.cantidadNC }}</td>
+                        <td (change)="validarParcialesElegidas()"><input type="checkbox"  [(ngModel)]="rechazoParcialStock.isSelected"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <br>
+              <div class="control">
+                <button class="button is-success" style ="margin-left: 37rem;"
+                (click)="confirmarRechazosParciales()"
+                [disabled]="!isVisible">
+                  Confirmar
+                </button>
+              </div>
+            </accordion-group>
+  
+          </accordion>
+
+      </div>
+      <br>
+      <button class="button is-success" (click)="volver()">Volver</button>
+    </div>
+  </div>
+</div>

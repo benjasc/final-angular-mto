@@ -1,0 +1,187 @@
+<section class="container is-fluid ">
+  <div class="card ">
+    <div class="card-header ">
+      <div class="card-header-title">Ingreso Reservas Corporativas</div>
+    </div>
+    <div class="card-content ">
+      <div class="content">
+        <div class="card">
+          <div class="header-title">Parametros de Busqueda</div>
+          <div class="card-content">
+            <div class="columns ">
+              <div class="column">
+                <div class="field ">
+                  <label class="label is-small ">Suc. Venta</label>
+                  <div class="control ">
+                    <div class="select">
+                      <select>
+                        <option disabled>Seleccione</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column ">
+                <div class="field ">
+                  <label class="label is-small ">RUC Empresa</label>
+                  <div class="control ">
+                    <input class="input" type="text" />
+                  </div>
+                </div>
+              </div>
+              <div class="column ">
+                <div class="field ">
+                  <label class="label is-small ">Nro. Caja</label>
+                  <div class="control ">
+                    <input class="input" type="text" />
+                  </div>
+                </div>
+              </div>
+              <div class="column ">
+                <div class="field ">
+                  <label class="label is-small ">Nro. Documento</label>
+                  <div class="control ">
+                    <input class="input" type="text" />
+                  </div>
+                </div>
+              </div>
+              <div class="column ">
+                <div class="field ">
+                  <label class="label is-small ">Tipo Documento</label>
+                  <div class="control ">
+                    <div class="select">
+                      <select>
+                        <option disabled>Seleccione</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="columns is-centered ">
+              <div class="column is-3 ">
+                <div class="field ">
+                  <label class="label is-small ">Orden de Compra</label>
+                  <div class="control ">
+                    <input class="input" type="text" />
+                  </div>
+                </div>
+              </div>
+              <div class="column is-2 ">
+                <div class="field">
+                  <div class="control" style="margin-top: 21px;">
+                    <a class="button is-info is-fullwidth" type="button "
+                      >Buscar</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="card">
+          <div class="header-title">Reservas Vigentes</div>
+
+          <div class="card-content">
+            <table
+              datatable
+              [dtOptions]="dtOptions[0]"
+              [dtTrigger]="dtTrigger"
+              style="padding-top: 10px;"
+              class="row-border hover table"
+              width="100%"
+            >
+              <thead>
+                <tr>
+                  <th>CUD</th>
+                  <th>Fecha Ingreso</th>
+                  <th>Codigo Venta</th>
+                  <th>Cantidad en Reserva</th>
+                  <th>Cantidad en Bodega</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let element of listaBackorders">
+                  <td>{{ element.idorder }}</td>
+                  <td>{{ element.modeloDespacho }}</td>
+                  <td>{{ element.motivoBackorder }}</td>
+                  <td>{{ element.created_at }}</td>
+                  <td>{{ element.sku }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br />
+        <div class="card">
+          <div class="header-title">Detalles de Reservas Reportadas</div>
+          <div class="card-content">
+            <table
+              datatable
+              [dtOptions]="dtOptions[0]"
+              [dtTrigger]="dtTrigger"
+              class="row-border hover table"
+              style="padding-top: 10px;"
+              width="100%"
+            >
+              <thead>
+                <tr>
+                  <th>CUD Reserva Origen</th>
+                  <th>CUD Nueva Reserva</th>
+                  <th>SKU</th>
+                  <th>Cantidad Origen</th>
+                  <th>Cantidad Repartida</th>
+                  <th>DNI Despacho</th>
+                  <th>Nombre</th>
+                  <th>SKU Despacho</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let element of listaBackorders">
+                  <td>{{ element.idorder }}</td>
+                  <td>{{ element.modeloDespacho }}</td>
+                  <td>{{ element.motivoBackorder }}</td>
+                  <td>{{ element.created_at }}</td>
+                  <td>{{ element.sku }}</td>
+                  <td>{{ element.producto }}</td>
+                  <td>{{ element.amount }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br />
+        <div class="columns is-pulled-right ">
+          <div class="column   ">
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Saldo a Reportar</label>
+              </div>
+
+              <div class="field">
+                <input class="input" type="text" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <a class="button is-light  ">Reporte</a>
+        <a class="button is-light  ">Buscar Agenda</a>
+        <a class="button is-light  ">Ingresar Despachos</a>
+        <a class="button is-light  ">Limpiar</a>
+        <a class="button is-danger ">Salir</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <p> se utiliza para renderizar la tabla
+        <button type="button " class="btn waves-effect waves-light blue " (click)="rerender() ">
+          Rerender
+        </button>
+      </p> -->

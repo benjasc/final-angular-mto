@@ -1,0 +1,94 @@
+<div class="container is-fluid ">
+    <div class="columns">
+        <div class="column is-12">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Nota de Crédito por vencimiento RET
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field ">
+                                    <label class="label is-small ">Productos Caducados:</label>
+                                    <div class="field ">
+                                        <a class="button is-large" (click)="buscarBT()">
+                                            <span>Ejecutar Consulta</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">
+                                    Resultados de la búsqueda
+                                </p>
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let cuadratura of arrayCuadratura">
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                    <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+                                </table>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <button class="button is-success " (click)="imprimirGde()">Ejecutar Nota de Crédito </button>
+                        <button class="button is-success " (click)="imprimirGde()">Cancelar </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

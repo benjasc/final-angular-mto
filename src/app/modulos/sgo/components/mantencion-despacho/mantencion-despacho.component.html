@@ -1,0 +1,115 @@
+<div class="container is-fluid ">
+    <div class="columns">
+        <div class="column is-12">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Consulta y Mantención de Despacho - Sucursal Destino
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <div class="columns">
+                            <div class="column is-3">
+                                <div class="card">
+                                    <div class="card-content ">
+                                        <textarea class="textarea" placeholder="Insertar los CUD separados por ','" rows="15"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-9">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <p class="title">
+                                            Resultados de la búsqueda
+                                        </p>
+                                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                                            <thead>
+                                                <tr>
+                                                    <th>Orden de Compra</th>
+                                                    <th>Modelo despacho</th>
+                                                    <th>Estado del CUD</th>
+                                                    <th>Motivo de CUD</th>
+                                                    <th>Orden de Compra</th>
+                                                    <th>Orden de Compra</th>
+                                                    <th>Modelo despacho</th>
+                                                    <th>Estado del CUD</th>
+                                                    <th>Motivo de CUD</th>
+                                                    <th>Orden de Compra</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr *ngFor="let cuadratura of arrayCuadratura">
+                                                    <td>{{cuadratura.odencompra}}</td>
+                                                    <td>{{cuadratura.modeloDespacho}}</td>
+                                                    <td>{{cuadratura.estadoCud}}</td>
+                                                    <td>{{cuadratura.motivo}}</td>
+                                                    <td>{{cuadratura.odencompra}}</td>
+                                                    <td>{{cuadratura.odencompra}}</td>
+                                                    <td>{{cuadratura.modeloDespacho}}</td>
+                                                    <td>{{cuadratura.estadoCud}}</td>
+                                                    <td>{{cuadratura.motivo}}</td>
+                                                    <td>{{cuadratura.odencompra}}</td>
+                                                </tr>
+
+                                            </tbody>
+                                            <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+                                        </table>
+                                        <br/>
+                                        <div class="field ">
+                                            <label class="label is-small ">Seleccione sucursal destino:</label>
+                                            <div class="select">
+                                                <select>
+                                                    <option>10096 - Punta Arenas</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <div class="columns">
+                                    <div class="column is-3">
+                                        <div class="field ">
+                                            <a class="button is-large" (click)="buscarBT()">
+                                                <span>Ejecutar Consulta</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="column is-2">
+                                        <div class="field ">
+                                            <a class="button is-large" (click)="buscarBT()">
+                                                <span>Limpiar</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="column is-4">
+                                        <div class="field ">
+                                            <a class="button is-large" (click)="buscarBT()">
+                                                <span>Modificar Sucursal Destino</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="column is-3">
+                                        <div class="field ">
+                                            <a class="button is-large" (click)="buscarBT()">
+                                                <span>Cerrar</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

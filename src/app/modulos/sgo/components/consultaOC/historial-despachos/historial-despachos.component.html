@@ -1,0 +1,100 @@
+<section class="container is-fluid ">
+    <div class="card ">
+        <div class="card-header ">
+            <div class="card-header-title">Ingreso Reservas Corporativas</div>
+        </div>
+        <div class="card-content ">
+            <div class="content">
+                <div class="card">
+                    <div class="button is-info is-small" style="cursor:text">Ingreso de Parámetros</div>
+                    <div class="card-content">
+                        <div class="columns ">
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">C.U.D</label>
+                                    <div class="control">
+                                        <input class="input " type="text" appInputs>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">RUT Despacho</label>
+                                    <div class="control">
+                                        <input class="input " type="text" appInputs>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Nombre</label>
+                                    <div class="control">
+                                        <input class="input " type="text" appInputs>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-2">
+                                <div class="field">
+                                    <div class="control" style="margin-top: 21px;;">
+                                        <a class="button is-info is-fullwidth" type="button ">Buscar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field ">
+                                    <label class="checkbox" enable>
+                                                              <input type="checkbox" enable>
+                                                                  Información de Pick Ticket y Distros creados
+                                                            </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-content">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 10px;" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Fecha Cambio de Estado</th>
+                                    <th>Estado</th>
+                                    <th>Motivo</th>
+                                    <th>Fecha Desp</th>
+                                    <th>Sucursal</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let element of listaBackorders">
+                                    <td>{{ element.idorder }}</td>
+                                    <td>{{ element.modeloDespacho }}</td>
+                                    <td>{{ element.motivoBackorder }}</td>
+                                    <td>{{ element.created_at }}</td>
+                                    <td>{{ element.sku }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <a class="button is-danger ">Salir</a>
+                <a class="button is-info ">Guardar</a>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+<!-- <p> se utiliza para renderizar la tabla
+              <button type="button " class="btn waves-effect waves-light blue " (click)="rerender() ">
+                Rerender
+              </button>
+            </p> -->

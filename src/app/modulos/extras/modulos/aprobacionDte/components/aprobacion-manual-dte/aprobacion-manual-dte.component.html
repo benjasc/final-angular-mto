@@ -1,0 +1,95 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Productos que pasan Aprobaci&oacute;n Manual de DTE
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+              <thead>
+                <tr>
+                  <th>Seleccione</th>
+                  <th>SKU</th>
+                  <th>Descripci&oacute;n</th>
+                  <th>Fecha Ingreso</th>
+                  <th>Ingresado Por</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of productos; index as i">
+                  <td *ngIf="p.sku"><input type="checkbox" [value]="check"
+                      ></td>
+                  <td>{{ p.sku }}</td>
+                  <td>{{ p.descripcion }}</td>
+                  <td>{{ p.fechaIngreso }}</td>
+                  <td>{{ p.ingresadoPor }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="form-columns">
+              <div class="field">
+                <div class="form-column">
+                  <div class="control">
+                    <button class="button is-success" (click)="abrirModal()">
+                      Agregar SKU
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="form-column">
+                  <div class="control">
+                    <button class="button is-success">
+                      Eliminar SKU
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="form-column">
+                  <div class="control">
+                    <input #myInputFile type="file" accept=".txt" class="form-control-file" id="archivo" name="archivo" class="button is-success" style="margin-left:40rem;background-color: var(--color-1);" (change)="changeListener($event)">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="control">
+                <button class="button is-success btn" (click)="volver()">
+                  Volver
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal #modalAgregarSku>
+  <modal-header>
+    <p class="tituloModal">Agregar SKU</p>
+  </modal-header>
+  <modal-content>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="sku" placeholder="Ingresar n&uacute;mero SKU" appOnlyNumber
+        maxlength="15">
+      <small class="err">{{mensaje}}</small>
+    </div>
+  </modal-content>
+  <modal-footer>
+    <button class="button is-danger" (click)="cerrar()" style="margin-right: 16rem;">Cerrar</button>
+    <button class="button is-success" (click)="cambiarValor()">Agregar</button>
+  </modal-footer>
+</modal>

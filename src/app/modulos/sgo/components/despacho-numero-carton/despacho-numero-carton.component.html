@@ -1,0 +1,93 @@
+<div class="container is-fluid ">
+    <div class="columns">
+        <div class="column is-12">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Consulta de Despachos por N° de cartón
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field ">
+                                    <label class="label is-small ">Número de cartón:</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="Text input">
+                                    </div>
+                                    <!--<app-email></app-email>-->
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field ">
+                                    <a class="button is-large" (click)="buscarBT()">
+                                        <span>Ejecutar Consulta</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">
+                                    Resultados de la búsqueda
+                                </p>
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                                    <thead>
+                                        <tr>
+                                            <th> </th>
+                                            <th>Sector</th>
+                                            <th>Camión Virtual</th>
+                                            <th>Boleta</th>
+                                            <th>Fecha Venta</th>
+                                            <th>Fecha Despacho</th>
+                                            <th>Fecha Compromiso</th>
+                                            <th>Flecha Planificación</th>
+                                            <th>Fecha Fachada</th>
+                                            <th>Suc. Venta</th>
+                                            <th>Suc. Stock</th>
+                                            <th>Suc. Despacho</th>
+                                            <th>Estado</th>
+                                            <th>Datos Cliente</th>
+                                            <th>Número de OC</th>
+                                            <th>SKU</th>
+                                            <th>Descripción SKU</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let cuadratura of arrayDespachoNumCarton">
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                    <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+                                </table>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <button class="button is-success " (click)="imprimirGde()">Cerrar Consulta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

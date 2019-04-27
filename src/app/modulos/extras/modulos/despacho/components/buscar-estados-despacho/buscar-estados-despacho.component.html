@@ -1,0 +1,87 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Estados Despacho
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">N&uacute;mero OC</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Número OC" [(ngModel)]="numeroNC" name="NumeroNC"
+                        appOnlyNumber
+                        maxlength="10">
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <button style="margin-top: 27%;" class="button is-success" (click)="buscar()">
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+            <!-- <div *ngIf="ordenes !== null && ordenes!== undefined && ordenes.length > 0"> -->
+            <div>
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+                <thead>
+                  <tr>
+                    <th>N&uacute;mero OC</th>
+                    <th>Estado Despacho</th>
+                    <th>Estado OC</th>
+                    <th>Fecha Compra</th>
+                    <th>Fecha Entrega</th>
+                    <th>Monto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- <tr *ngFor="let oc of ordenes"> -->
+                    <!-- <td>{{ despacho.numeroOC }}</td>
+                      <td>{{ despacho.estadoDespacho }}</td>
+                      <td>{{ despacho.estadoOC }}</td>
+                      <td>{{ despacho.fechaCompra }}</td>
+                      <td>{{ despacho.fechaEntrega }}</td>
+                      <td>{{ despacho.monto }}</td> -->
+                    <td>213456</td>
+                    <td>correcto</td>
+                    <td>121</td>
+                    <td>123432</td>
+                    <td>12345432</td>
+                    <td>498324</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="field">
+                <div class="form-column">
+                  <div class="control">
+                    <button class="button is-success" (click)="volver()">
+                      Volver
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

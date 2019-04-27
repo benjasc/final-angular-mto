@@ -1,0 +1,480 @@
+<section class="container is-fluid ">
+    <div class="card ">
+        <div class="box">
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="header-title">Sistema de Gesti&oacute;n de &Oacute;rdenes</label>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="control ">
+                        <div class="select">
+                            <select [(ngModel)]="selectType" (change)="placeholderChange($event.target.value)">
+                                                      <option disabled >Seleccione</option>
+                                                      <option  >RUT/DNI</option>
+                                                      <option  >Email</option>
+                                                      <option  >OC</option>
+                                                      <option  >CUD</option>
+                                                      <option  >Boleta</option>
+                                              </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field has-addons" style="margin-bottom: 0px;">
+                        <div class="control is-expanded">
+                            <input *ngIf="selectType == 'Seleccione'" readonly class="input has-text-centered" type="search" [(ngModel)]="inputSearch" placeholder="{{placeholder}}">
+                            <input *ngIf="selectType == 'RUT/DNI'" maxlength="12" class="input has-text-centered" type="search" [(ngModel)]="inputSearch" (keyup)="rutFormat()" (keypress)="onlyNumber($event)" placeholder="{{placeholder}}">
+                            <input *ngIf="selectType == 'Email'" (keypress)="validarEmail($event)" maxlength="32" class="input has-text-centered" type="email" [(ngModel)]="inputSearch" placeholder="{{placeholder}}">
+                            <input *ngIf="selectType == 'OC' || selectType == 'Boleta'|| selectType == 'CUD' " maxlength="15" class="input has-text-centered" type="search" [(ngModel)]="inputSearch" placeholder="{{placeholder}}">
+
+
+                        </div>
+                        <div class="control">
+                            <a class="button is-success" (click)="search()">Buscar</a>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <p class="tag is-danger" *ngIf="messageValidBoolean">{{messageValid}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-content ">
+            <div class="content">
+                <div class="card">
+                    <div class="button btn-color is-small">Datos del Cliente</div>
+                    <div class="card-content">
+                        <div class="columns ">
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Nombre</label>
+                                    <div class="control">
+                                        <input class="input " readonly type="text" [(ngModel)]="customer.firstname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-2">
+                                <div class="field ">
+                                    <label class="label is-small ">RUT</label>
+                                    <div class="control">
+                                        <input class="input" readonly type="text" [(ngModel)]="customer.customerid">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-2">
+                                <div class="field ">
+                                    <label class="label is-small ">Telefono Principal</label>
+                                    <div class="control ">
+                                        <div class="select">
+                                            <select>
+                                                  <option *ngIf="customer.phonenumber1" >{{customer.phonenumber1}}</option>
+                                                  <option *ngIf="customer.phonenumber2">{{customer.phonenumber2}}</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field ">
+                                    <label class="label is-small ">Email Principal</label>
+                                    <div class="control ">
+                                        <div class="select">
+                                            <select>
+                                                  <option *ngIf="customer.email" >{{customer.email}}</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Direccion Principal</label>
+                                    <div class="control ">
+                                        <div class="select">
+                                            <select>
+                                            <option *ngIf="customer.items" >{{customer.items&&customer.items[0]?.address.address1}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <br>
+                <div class="card">
+                    <div class="button  is-small" [ngClass]="productosCompradosShow == false ? 'btn-color' : 'is-light'" (click)="tabProductosComprados()">Productos Comprados</div>
+                    <div class="button  is-small" [ngClass]="historialDesopachoShow == false ? 'btn-color' : 'is-light'" (click)="tabHistorialDespacho()">Historial de Despacho</div>
+                    <div class="card-content" [hidden]="productosCompradosShow">
+                        <div class="columns" *ngIf="selectType == 'RUT/DNI'|| selectType == 'Email'">
+                            <div class="column is-2">
+                                <div class="field">
+                                    <label for="" class="label is-small">Desde</label>
+                                    <div class="control">
+                                        <my-date-picker [selDate]="fechaCompraDesde|date: 'dd/MM/yyyy'||''" (dateChanged)="cambiaFechaDesde($event)" disabled [options]="myDatePickerOptionsDesde"></my-date-picker>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="column is-2">
+                                <div class="field">
+                                    <label for="" class="label is-small">Hasta</label>
+                                    <div class="control">
+                                        <my-date-picker [selDate]="fechaCompraHasta|date: 'dd/MM/yyyy'||''" (dateChanged)="cambiaFechaHasta($event)" disabled [options]="myDatePickerOptionsHasta"></my-date-picker>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-1">
+                                <div class="field">
+                                    <div class="control" style="margin-top: 21px;">
+                                        <a class="button btn-color is-fullwidth" type="button" (click)="filterByDate()">Filtrar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table datatable [dtOptions]="dtOptions[0]" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 10px;" width="100%">
+                            <thead>
+                                <tr>
+
+                                    <th>Flujo Despacho</th>
+                                    <th>SKU</th>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Fecha Compra</th>
+                                    <th>Canal</th>
+                                    <th>Estado Despacho</th>
+                                    <th>OC</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of customer.items" (click)="getDetalleCompra(item.order.ordernumber)" style="cursor:pointer">
+                                    <td><a class="button btn-color is-small " (click)="x(209876543,item.estado)"> Ver Flujo</a></td>
+                                    <!-- (click)="x(item.shipping.shippingorder,item.estado)" -->
+                                    <td>{{item.SKU}}</td>
+                                    <td>{{item.itemSaleName}}</td>
+                                    <td>$4500
+                                        <!-- {{item.itemCost | number}} -->
+                                    </td>
+                                    <td>{{item.order.creationtime | date: 'dd/MM/yyyy'}}</td>
+                                    <td>Ripley.com</td>
+                                    <td>Entregado Conforme</td>
+                                    <td>{{item.order.ordernumber}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-content" [hidden]="historialDesopachoShow">
+
+                        <table datatable [dtOptions]="dtOptions[1]" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 10px;" width="100%">
+                            <thead>
+                                <tr>
+
+                                    <th>Fecha Cambio Estado</th>
+                                    <th>Estado</th>
+                                    <th>Motivo</th>
+                                    <th>Fecha Despacho</th>
+                                    <th>Sucursal</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let item of shippingHistory">
+                                    <td>{{item.changeDate | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{item.status}}</td>
+                                    <td>{{item.subStatus}}</td>
+                                    <td>{{item.shippingDate | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{item.stockStore}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <div class="card  ">
+
+                    <div class="button btn-color is-small" style="cursor:text">Detalle de Compra</div>
+                    <div class="card-content ">
+                        <table datatable [dtOptions]="dtOptions[2]" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 10px;" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Fecha Reserva</th>
+                                    <th>Planificación</th>
+                                    <th>Despacho</th>
+                                    <th>Canal</th>
+                                    <th>OC</th>
+                                    <th>Est. OC</th>
+                                    <th>Tipo Despacho</th>
+                                    <th>Sucursal Origen</th>
+                                    <th>Sucursal Despacho</th>
+                                    <th>Jornada</th>
+                                    <th>Zona Despacho</th>
+                                    <th>Release</th>
+                                    <th>Guia Despacho</th>
+                                    <th>Factura/Boleta</th>
+                                    <th>Folio DTE</th>
+                                    <th>Nota De Credito</th>
+                                    <th>Garantia</th>
+                                    <th>Descuento Item</th>
+                                    <th>Tarifa Flete</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>{{order.items&&order.items[0]?.shipping.shippingetadate | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{order.items&&order.items[0]?.shipping.shippingpreparationdate | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{order.items&&order.items[0]?.shipping.shippingcommitteddate | date: 'dd/MM/yyyy' }}</td>
+                                    <td>{{order.ordenPayment&&order.ordenPayment[0]?.channel.name}}</td>
+                                    <td>{{order.ordernumber}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td>{{order.items&&order.items[0]?.shipping.shippingtype}}</td>
+                                    <td>{{order.sucursalOrigen}}</td>
+                                    <td>{{order.sucursalDespacho}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{order.release}}</td>
+                                    <td>{{order.numeroGuia}}</td>
+                                    <td></td>
+                                    <td>{{order.dtenumber}}</td>
+                                    <td>{{order.ncdtenumber}}</td>
+                                    <td>{{order.items&&order.items[0]?.warrantytype | number}}</td>
+                                    <td>{{order.items&&order.items[0]?.itemunitdoscount | number}}</td>
+                                    <td>{{order.tarifaFlete}}</td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <div class="columns">
+                            <div class="column is-5 ">
+                                <div class="card" style="height: 100%">
+                                    <div class="button btn-color is-small" style="cursor:text">Medio de Pago</div>
+                                    <div class="card-content ">
+                                        <div class="columns">
+                                            <div class="column ">
+                                                <div class="field ">
+                                                    <div class="control ">
+                                                        <article class="message btn-color">
+                                                            <div *ngIf="order.items" class="message-body has-text-centered" style="color: white">
+                                                                Tarjeta Ripley - PAN ****3013 - COD.AUTORIZADO:13532
+                                                            </div>
+                                                        </article>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="columns">
+                                            <div class="column ">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Datos de Despacho</label>
+                                                    <div class="control ">
+                                                        <input class="input " readonly type="text " [ngModel]="order.items&&order.items[0]?.shipping.address.address1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="columns">
+                                            <div class="column ">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Entrega Compromiso</label>
+                                                    <div class="control ">
+                                                        <input class="input " readonly type="text " [ngModel]="order.items&&order.items[0]?.shipping.shippingetadate | date: 'dd/MM/yyyy'">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="column ">
+                                                <div class="field ">
+                                                    <label class="label is-small ">Entrega conforme</label>
+                                                    <div class="control ">
+                                                        <input class="input " readonly type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-7 ">
+                                <div class="card" style="height: 100%">
+                                    <div class="button btn-color is-small" style="cursor:text">Detalle de Compra</div>
+                                    <div class="card-content">
+                                        <table datatable [dtOptions]="dtOptions[3]" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 10px;" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Codigo</th>
+                                                    <th>Descrip. Cantidad x Precio</th>
+                                                    <th>Valor</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr *ngFor="let item of order.items">
+                                                    <td>{{item.SKU}}</td>
+                                                    <td>{{item.itemSaleName}}</td>
+                                                    <td>30000</td>
+                                                </tr>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal" [ngClass]="{ 'is-active' : isModalActive,'backdrop':'static' }" data-keyboard="false" data-backdrop="static">
+        <div class="modal-background"></div>
+        <div class="modal-card" style="height: 100%; width: 80%;">
+            <div class="modal-card-head">
+                <p class="modal-card-title">Flujo de Despacho</p>
+                <button class="delete" aria-label="close" (click)="x()"></button>
+            </div>
+            <div class="modal-card-body">
+                <section class="container is-fluid ">
+                    <div class="card ">
+                        <div class="card-content ">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="columns is-centered">
+                                        <div class="column is-3">
+                                            Fecha de Recepcion : 11/02/2019
+                                        </div>
+                                        <div class="column is-3">
+                                            Pedido N° : 1231234
+                                        </div>
+                                        <div class="column is-3">
+                                            Producto :
+                                        </div>
+
+                                    </div>
+                                    <!-- <div class="md-stepper-horizontal orange">
+                                        <div class="md-step " [ngClass]="[estadoFlujo== 'recibido'
+                                    ||estadoFlujo== 'stock'||estadoFlujo=='separacion'||
+                                    estadoFlujo=='preparado'||estadoFlujo=='enviado'||estadoFlujo=='entregado'? 'active' : '']">
+                                            <div class="md-step-circle"><span>1</span></div>
+                                            <div class="md-step-title">Pedido Recibido</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step " [ngClass]="[estadoFlujo== 'stock'||estadoFlujo=='separacion'||
+                                    estadoFlujo=='preparado'||estadoFlujo=='enviado'||estadoFlujo=='entregado'? 'active' : '']">
+                                            <div class="md-step-circle"><span>2</span></div>
+                                            <div class="md-step-title">Articulos en Stock</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step " [ngClass]="[estadoFlujo=='separacion'||
+                                    estadoFlujo=='preparado'||estadoFlujo=='enviado'||estadoFlujo=='entregado'? 'active' : '']">
+                                            <div class="md-step-circle"><span>3</span></div>
+                                            <div class="md-step-title">En Separación</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step " [ngClass]="[estadoFlujo=='preparado'||estadoFlujo=='enviado'||estadoFlujo=='entregado'? 'active' : '']">
+                                            <div class="md-step-circle"><span>4</span></div>
+                                            <div class="md-step-title">Preparado</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step " [ngClass]="[estadoFlujo=='enviado'||estadoFlujo=='entregado'? 'active' : '']">
+                                            <div class="md-step-circle"><span>5</span></div>
+                                            <div class="md-step-title">Enviado</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step" [ngClass]="[estadoFlujo=='entregado'? 'active' : '']">
+                                            <div class="md-step-circle"><span>6</span></div>
+                                            <div class="md-step-title">Entregado</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step" [ngClass]="[estadoFlujo=='entregado'? 'active' : '']">
+                                            <div class="md-step-circle"><span>7</span></div>
+                                            <div class="md-step-title">Entregado</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                    </div> -->
+                                    <div class="md-stepper-horizontal orange">
+                                        <div class="md-step " [ngClass]="[estadoFlujo== 1
+                                    ||estadoFlujo== 2||estadoFlujo==3||
+                                    estadoFlujo==4||estadoFlujo==5||estadoFlujo==6 ||estadoFlujo==7? 'active' : '']">
+                                            <div class="md-step-circle"><span>1</span></div>
+                                            <div class="md-step-title">Pedido Recibido</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step " [ngClass]="[estadoFlujo== 2||estadoFlujo==3||
+                                    estadoFlujo==4||estadoFlujo==5||estadoFlujo==6||estadoFlujo==7? 'active' : '']">
+                                            <div class="md-step-circle"><span>2</span></div>
+                                            <div class="md-step-title">Articulos en Stock</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step " [ngClass]="[estadoFlujo==3||
+                                    estadoFlujo==4||estadoFlujo==5||estadoFlujo==6||estadoFlujo==7? 'active' : '']">
+                                            <div class="md-step-circle"><span>3</span></div>
+                                            <div class="md-step-title">En Separación</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step " [ngClass]="[estadoFlujo==4||estadoFlujo==5||estadoFlujo==6||estadoFlujo==7? 'active' : '']">
+                                            <div class="md-step-circle"><span>4</span></div>
+                                            <div class="md-step-title">Preparado</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step " [ngClass]="[estadoFlujo==5||estadoFlujo==6||estadoFlujo==7? 'active' : '']">
+                                            <div class="md-step-circle"><span>5</span></div>
+                                            <div class="md-step-title">Enviado</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step" [ngClass]="[estadoFlujo==6||estadoFlujo==7? 'active' : '']">
+                                            <div class="md-step-circle"><span>6</span></div>
+                                            <div class="md-step-title">En Reparto</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                        <div class="md-step" [ngClass]="[estadoFlujo==7? 'active' : '']">
+                                            <div class="md-step-circle"><span>7</span></div>
+                                            <div class="md-step-title">Entregado</div>
+                                            <div class="md-step-bar-left"></div>
+                                            <div class="md-step-bar-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br>
+                            <br>
+                            <a class="button btn-color " (click)="showDetails()">Ver Detalles</a>
+
+                        </div>
+                    </div>
+
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>

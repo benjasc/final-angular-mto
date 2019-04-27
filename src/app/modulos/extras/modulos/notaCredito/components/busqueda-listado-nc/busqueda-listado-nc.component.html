@@ -1,0 +1,107 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Notas de Cr&eacute;dito
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Buscar Notas De Cr&eacute;dito</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Número OC" [(ngModel)]="numeroOC" name="NumeroOC"
+                        appOnlyNumber (keyup)="validarCampoOC()">
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Tipo Documento</label>
+                    <div class="control">
+                      <div class="select">
+                        <select name="documentType" [(ngModel)]="tipoDocumento">
+                          <option [value]="0">TODOS LOS DOCUMENTOS</option>
+                          <option value="1">BOLETA</option>
+                          <option value="2">FACTURA</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <button style="margin-top: 27%;" class="button is-success" (click)="buscar()"
+                        [disabled]="!isValid">
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <button style="margin-top: 18%;" class="button is-success" (click)="listarTodos()">
+                        Listar Todos
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <small *ngIf="!isValid">{{mensaje}}</small>
+            <!-- <div *ngIf="ordenes !== null && ordenes !== undefined"> -->
+              <div>
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+                <thead>
+                  <tr>
+                    <th>Cod Pa&iacute;s</th>
+                    <th>OC</th>
+                    <th>NC</th>
+                    <th>Rut Cliente</th>
+                    <th>Fecha</th>
+                    <th>Fecha Rechazo</th>
+                    <th>Fecha Despacho</th>
+                    <th>Medio De Pago</th>
+                    <th>Monto</th>
+                    <th>Sucursal De Retiro</th>
+                    <th>Acci&oacute;n</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let oc of ordenes">
+                    <td>{{ oc.codPais }}</td>
+                    <td>{{ oc.orden }}</td>
+                    <td>{{ oc.notaCredito }}</td>
+                    <td>{{ oc.rutCliente }}</td>
+                    <td>{{ oc.fecha }}</td>
+                    <td>{{ oc.fechaRechazo }}</td>
+                    <td>{{ oc.fechaDespacho }}</td>
+                    <td>{{ oc.medioPago }}</td>
+                    <td>{{ oc.monto }}</td>
+                    <td>{{ oc.sucursalRetiro }}</td>
+                    <td>
+                      <button class="button is-success" (click)="detalles(oc.orden, oc.monto, oc.codPais)">
+                        Detalles
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

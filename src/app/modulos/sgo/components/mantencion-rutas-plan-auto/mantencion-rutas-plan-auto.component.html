@@ -1,0 +1,114 @@
+<div class="container is-fluid ">
+    <div class="columns">
+        <div class="column is-12">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Mantención Rutas de Planificación Automática
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field ">
+                                    <label class="label is-small ">Tipo Sucursal:</label>
+                                    <div class="select is-disabled">
+                                        <select>
+                                          <option>(Todos)</option>
+                                          <option>With options</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <div class="file is-info has-name is-large">
+                                        <label class="file-label">
+                                        <input class="file-input" type="file" name="resume">
+                                        <span class="file-cta">
+                                          <span>Añadir Sucursal</span>
+                                        </span>
+                                      </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">
+                                    Resultados de la búsqueda
+                                </p>
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                            <th>Orden de Compra</th>
+                                            <th>Modelo despacho</th>
+                                            <th>Estado del CUD</th>
+                                            <th>Motivo de CUD</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let cuadratura of arrayCuadratura">
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                            <td>{{cuadratura.odencompra}}</td>
+                                            <td>{{cuadratura.modeloDespacho}}</td>
+                                            <td>{{cuadratura.estadoCud}}</td>
+                                            <td>{{cuadratura.motivo}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                    <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+                                </table>
+                                <br/>
+                                <div class="field">
+                                    <label class="checkbox" enable>
+                                  <input type="checkbox" enable>
+                                      Editar valores
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <button class="button is-success " (click)="imprimirGde()">Guardar Rutas </button>
+                        <button class="button is-success " (click)="imprimirGde()">Salir de Mantenedor </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

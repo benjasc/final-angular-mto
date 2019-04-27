@@ -1,0 +1,291 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Creaci&oacute;n De Acreedor
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+
+        <div class="card-content">
+          <div class="content">
+            <div class="form-column">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" disabled value="{{titulo}}">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4 style="text-align: center;font-size: large; color:#5bacec;font-weight: bold;">N&uacute;mero de orden de
+          compra: {{numeroOC}} </h4>
+        <p class="card-header-title">
+          Datos Del Acreedor
+        </p>
+        <form [formGroup]="form" autocomplete="off">
+          <div class="form-columns">
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Rut</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="rut" name="Rut" formControlName="rut"
+                  maxlength="9"
+                  appRut
+                  (rutSinFormato)="obtenerRutSinFormato($event)">
+                </div>
+                <div *ngIf="form.controls.rut.errors && form.controls.rut.dirty">
+                  <div *ngIf="form.controls.rut.errors.required" class="err">
+                    <p>El rut es requerido</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-columns">
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Nombre</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="nombre" name="Nombre" formControlName="nombre"
+                    maxlength="100">
+                </div>
+                <div *ngIf="form.controls.nombre.errors && form.controls.nombre.dirty">
+                  <div *ngIf="form.controls.nombre.errors.required" class="err">
+                    <p>El nombre es requerido</p>
+                  </div>
+                  <div *ngIf="form.controls.nombre.errors.maxlength" class="err">
+                    <p>M&aacute;ximo {{form.controls.nombre.errors.maxlength.requiredLength}} caracteres</p>
+                  </div>
+                  <div *ngIf="form.controls.nombre.errors.minlength" class="err">
+                    <p>M&iacute;nimo {{form.controls.nombre.errors.minlength.requiredLength}} caracteres</p>
+                  </div>
+                  <!-- <div *ngIf="form.controls.direccion.errors.pattern" class="field error">
+                        <p>No se admiten caracteres especiales</p>
+                    </div>  -->
+                </div>
+              </div>
+            </div>
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Calle</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="calle" name="Calle" formControlName="calle"
+                    maxlength="100">
+                </div>
+                <div *ngIf="form.controls.calle.errors && form.controls.calle.dirty">
+                  <div *ngIf="form.controls.calle.errors.required" class="err">
+                    <p>El campo calle es requerido</p>
+                  </div>
+                  <div *ngIf="form.controls.calle.errors.maxlength" class="err">
+                    <p>M&aacute;ximo {{form.controls.calle.errors.maxlength.requiredLength}} caracteres</p>
+                  </div>
+                  <div *ngIf="form.controls.calle.errors.minlength" class="err">
+                    <p>M&iacute;nimo {{form.controls.calle.errors.minlength.requiredLength}} caracteres</p>
+                  </div>
+                  <!-- <div *ngIf="form.controls.direccion.errors.pattern" class="field error">
+                        <p class="field error">No se admiten caracteres especiales</p>
+                    </div>  -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-columns">
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Distrito</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="distrito" name="Distrito" formControlName="distrito"
+                    maxlength="100">
+                </div>
+                <div *ngIf="form.controls.distrito.errors && form.controls.distrito.dirty">
+                  <div *ngIf="form.controls.distrito.errors.required" class="err">
+                    <p>El campo distrito es requerido</p>
+                  </div>
+                  <div *ngIf="form.controls.distrito.errors.maxlength" class="err">
+                    <p>M&aacute;ximo {{form.controls.distrito.errors.maxlength.requiredLength}} caracteres</p>
+                  </div>
+                  <div *ngIf="form.controls.distrito.errors.minlength" class="err">
+                    <p>M&iacute;nimo {{form.controls.distrito.errors.minlength.requiredLength}} caracteres</p>
+                  </div>
+                  <!-- <div *ngIf="form.controls.direccion.errors.pattern" class="field error">
+                        <p class="field error">No se admiten caracteres especiales</p>
+                    </div>  -->
+                </div>
+              </div>
+            </div>
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Regi&oacute;n</label>
+                <div class="control">
+                  <div class="select">
+                    <select name="Region" [(ngModel)]="region" formControlName="region" (change)="validRegion()">
+                      <option [value]="0">SELECCIONE</option>
+                      <option *ngFor="let item of regiones" [value]="item.valor">
+                        {{item.nombre | uppercase}}
+                      </option>
+                    </select>
+                  </div>
+                  <div *ngIf="region == '0'" class="err">
+                    <p>Debe Seleccionar una región</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-columns">
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*E-Mail</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="mail" name="Mail" formControlName="mail" maxlength="50">
+                </div>
+                <div *ngIf="form.controls.mail.errors && form.controls.mail.dirty">
+                  <div *ngIf="form.controls.mail.errors.required" class="err">
+                    <p>El campo mail es requerido</p>
+                  </div>
+                  <div *ngIf="form.controls.mail.errors.maxlength" class="err">
+                    <p>M&aacute;ximo {{form.controls.mail.errors.maxlength.requiredLength}} caracteres</p>
+                  </div>
+                  <div *ngIf="form.controls.mail.errors.minlength" class="err">
+                    <p>M&iacute;nimo {{form.controls.mail.errors.minlength.requiredLength}} caracteres</p>
+                  </div>
+                  <div *ngIf="form.controls.mail.errors.email" class="err">
+                    <p>El campo debe tener formato de correo electr&oacute;nico</p>
+                  </div>
+                  <!-- <div *ngIf="form.controls.direccion.errors.pattern" class="field error">
+                      <p class="field error">No se admiten caracteres especiales</p>
+                  </div>  -->
+                </div>
+              </div>
+            </div>
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Tel&eacute;fono</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="telefono" name="Telefono" formControlName="telefono"
+                    appOnlyNumber maxlength="9">
+                </div>
+                <div *ngIf="form.controls.telefono.errors && form.controls.telefono.dirty">
+                  <div *ngIf="form.controls.telefono.errors.required" class="err">
+                    <p>El campo tel&eacute;fono es requerido</p>
+                  </div>
+                  <div *ngIf="form.controls.telefono.errors.maxlength" class="err">
+                    <p>M&aacute;ximo {{form.controls.telefono.errors.maxlength.requiredLength}} caracteres</p>
+                  </div>
+                  <div *ngIf="form.controls.telefono.errors.minlength" class="err">
+                    <p>M&iacute;nimo {{form.controls.telefono.errors.minlength.requiredLength}} caracteres</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-columns">
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">Telefax</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="telefax" name="Telefax" formControlName="telefax"
+                    appOnlyNumber minlength="5" maxlength="15">
+                </div>
+              </div>
+            </div>
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">Telex</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="telex" name="Telex" formControlName="telex"
+                    appOnlyNumber minlength="5" maxlength="15">
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="card-header-title">
+            Datos Bancarios
+          </p>
+          <div class="form-columns">
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Titular Cuenta</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="titularCuenta" name="titularCuenta" maxlength="100"
+                    formControlName="titularCuenta">
+                </div>
+                <div *ngIf="form.controls.titularCuenta.errors && form.controls.titularCuenta.dirty">
+                  <div *ngIf="form.controls.titularCuenta.errors.required" class="err">
+                    <p>El campo es requerido</p>
+                  </div>
+                  <div *ngIf="form.controls.titularCuenta.errors.maxlength" class="err">
+                    <p>M&aacute;ximo {{form.controls.titularCuenta.errors.maxlength.requiredLength}} caracteres</p>
+                  </div>
+                  <div *ngIf="form.controls.titularCuenta.errors.minlength" class="err">
+                    <p>M&iacute;nimo {{form.controls.titularCuenta.errors.minlength.requiredLength}} caracteres</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Clave Banco</label>
+                <div class="control">
+                  <div class="select">
+                    <select name="Banco" [(ngModel)]="banco" formControlName="banco" (change)="validBanco()">
+                      <option [value]="0">SELECCIONE</option>
+                      <option *ngFor="let item of bancos" [value]="item.valor">
+                        {{item.nombre | uppercase}}
+                      </option>
+                    </select>
+                  </div>
+                  <div *ngIf="banco == '0'" class="err">
+                    <p>Debe Seleccionar un banco</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-column">
+              <div class="field">
+                <label class="label is-small">*Cuenta Bancaria</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="cuentaBancaria" name="cuentaBancaria"
+                  appOnlyNumber
+                  [(ngModel)]="cuentaBancaria"
+                  maxlength="30">
+                </div>
+                <div *ngIf="form.controls.cuentaBancaria.errors && form.controls.cuentaBancaria.dirty">
+                  <div *ngIf="form.controls.cuentaBancaria.errors.required" class="err">
+                    <p>El campo es requerido</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control" style="margin-top: 2rem;">
+              <button class="button is-danger btn" (click)="cancelar()" style="margin-left: 30rem;">
+                Cancelar
+              </button>
+
+              <button class="button is-success btn" (click)="crearAcreedorSap()"
+                style="margin-left: 16rem;"
+                [disabled]="!form.valid || !isValidBanco || !isValidRegion">
+                Crear
+              </button>
+              <br><br><br><br>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

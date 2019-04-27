@@ -1,0 +1,154 @@
+<div class="container is-fluid">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Detalle emisión masiva de guías de despacho
+            </p>
+            <a href="#" class="card-header-icon" aria-label="more options">
+              <span class="icon">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </a>
+          </header>
+          <div class="card-content">
+            <div class="content">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                      <label class="label">Sucursal de despacho</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field is-narrow">
+                        <div class="control">
+
+                            <label class="label"></label>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">N° de manifiesto</label>
+                      </div>
+                      <div class="field-body">
+                        <div class="field is-narrow">
+                          <div class="control">
+                              <label class="label"></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                      <label class="label">Transporte</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field is-narrow">
+                        <div class="control">
+                            <input type="text" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Conductor</label>
+                      </div>
+                      <div class="field-body">
+                        <div class="field is-narrow">
+                          <div class="control">
+                              <input type="text" disabled>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field is-horizontal propia">
+                        <div class="field-label is-normal">
+                          <label class="label">Patente</label>
+                        </div>
+                        <div class="field-body">
+                          <div class="field is-narrow">
+                            <div class="control">
+                                <input type="text" disabled>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+              <br/>
+              <br/>
+
+
+              <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+              <div class="card">
+                  <div class="card-content">
+                    <p class="title">
+                      Resultados de la búsqueda
+                    </p>
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                            <thead>
+                              <tr>
+
+
+                                <th>Region</th>
+                                <th>Nombre cliente</th>
+                                <th>Rut despacho</th>
+                                <th>Motivo CUD</th>
+                                <th>Descripcion SKU</th>
+                                <th>Comuna</th>
+                                <th>Rut Cliente</th>
+                                <th>Boleta / N° OC</th>
+                                <th>N° Carga</th>
+                                <th>Direccion despacho</th>
+                                <th>Nombre despacho</th>
+                                <th>Estado Cud</th>
+                                <th>SKU</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              <tr *ngFor="let detalleMasivo of arrayDetalleMasivo">
+                                <td>{{detalleMasivo.region}}</td>
+                                <td>{{detalleMasivo.nombreCliente}}</td>
+                                <td>{{detalleMasivo.rutDespacho}}</td>
+                                <td>{{detalleMasivo.motivoCud}}</td>
+                                <td>{{detalleMasivo.descripcionSKU}}</td>
+                                <td>{{detalleMasivo.comuna}}</td>
+                                <td>{{detalleMasivo.rutCliente}}</td>
+                                <td>{{detalleMasivo.boletaNOC}}</td>
+                                <td>{{detalleMasivo.nCarga}}</td>
+                                <td>{{detalleMasivo.direccionDespacho}}</td>
+                                <td>{{detalleMasivo.nombreDespacho}}</td>
+                                <td>{{detalleMasivo.estadoCud}}</td>
+                                <td>{{detalleMasivo.sku}}</td>
+
+                              </tr>
+
+                            </tbody>
+                            <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                    </table>
+                  </div>
+                </div>
+                <br/>
+                <br/>
+                <Button class="button is-success" (click)='buscarMasivas()'>
+                    Imprimir Manifiestos
+                    </Button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+

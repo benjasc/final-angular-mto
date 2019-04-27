@@ -1,0 +1,127 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Reimpresión de guías de despacho
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Seleccione Rut u OC</label>
+                    <div class="control">
+                        <label class="radio">
+                            <input style="margin-top: 17%;"
+                              type="radio"
+                              name="OCRUT"
+                              value="oc"
+                              (change)="radioButtonChange($event)"
+                              checked
+                            />
+                            N° OC
+                          </label>
+                          <label class="radio">
+                            <input style="margin-top: 17%;"
+                              type="radio"
+                              name="OCRUT"
+                              value="rut"
+                              (change)="radioButtonChange($event)"
+
+                            />
+                            RUT
+                          </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Ingrese Rut u OC</label>
+                    <div class="control">
+                        <input
+                        class="input"
+                        type="text"
+                        placeholder="{{ textInput }}"
+                        [(ngModel)]="inputOCRut"
+                        name="InputOCRut"
+                        (change)='hide()'
+                        id="OCRUTID"
+                      />
+
+                    </div>
+                    <span class="tag is-danger" *ngIf="messageValidBoolean">{{messageValid}}</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                        <Button style="margin-top: 27%;" class="button is-success" (click)='buscarGuiasDespacho()'>
+                            Buscar
+                            </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+
+
+
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+                <div class="card-content">
+                  <p class="title">
+                    Resultados de la búsqueda
+                  </p>
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                          <thead>
+                            <tr>
+                              <th>Seleccionar</th>
+                              <th>N° guía</th>
+                              <th>Fecha</th>
+                              <th>Reimprimir</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr *ngFor="let guiaDespacho of arrayGuiaDespacho">
+                              <td><input type="checkbox" name="isSelected" [(ngModel)]="guiaDespacho.isSelected" (change)="changeCheckBOX()"></td>
+                              <td>{{guiaDespacho.nGuia}}</td>
+                              <td>{{guiaDespacho.fecha}}</td>
+                              <td>
+                                <a class="button is-small is-success" (click)='Reimprimir()' >Reimprimir</a>
+                              </td>
+                            </tr>
+
+                          </tbody>
+                          <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                  </table>
+                </div>
+                <br/>
+                <br/>
+                <Button style="margin-top: 27%;" class="button is-success" (click)='imprimirGuiasDespacho()'>
+                    Imprimir Seleccionados
+                    </Button>
+              </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

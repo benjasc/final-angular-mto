@@ -1,0 +1,72 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" (click)="close()" >&times;</button>
+         <h4 class="modal-title">Configurar empresa que realizara el despacho</h4>
+       </div>
+       <div class="modal-body">
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Transporte</label>
+              </div>
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select>
+                        <option>Seleccione un transporte</option>
+                        <option *ngFor="let itemTransporte of arrayTransportCompany" value="itemTransporte.razonSocial">{{itemTransporte.razonSocial}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Conductor</label>
+                </div>
+                <div class="field-body">
+                  <div class="field is-narrow">
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select>
+                          <option>Seleccione un conductor</option>
+                          <option *ngFor="let itemConductor of arrayConductores" value="itemConductor.nombre">{{itemConductor.nombre}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">Patente</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field is-narrow">
+                      <div class="control">
+                        <div class="select is-fullwidth">
+                          <select>
+                            <option>Seleccione una patente</option>
+                            <option *ngFor="let itemCamion of arrayCamion" value="itemCamion.patente">{{itemCamion.patente}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+       </div>
+       <div class="modal-footer">
+          <button class="button is-success" (click)="confirm()">
+              Guardar
+            </button>
+            <button class="button is-danger" (click)="close()">
+                Volver
+              </button>
+       </div>
+     </div>
+  </div>
+
+

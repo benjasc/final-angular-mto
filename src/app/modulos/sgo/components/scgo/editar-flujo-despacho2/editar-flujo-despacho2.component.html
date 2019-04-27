@@ -1,0 +1,120 @@
+<section class="container is-fluid ">
+    <div class="card ">
+        <div class="card-header ">
+            <div class="card-header-title">Despacho en Tienda</div>
+        </div>
+        <div class="card-content ">
+            <div class="content">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="columns" style="    margin-bottom: 0px;">
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Producto</label>
+                                    <div class="control">
+                                        <input class="input " type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-2">
+                                <div class="field ">
+                                    <label class="label is-small ">Cantidad</label>
+                                    <div class="control ">
+                                        <input class="input" min="1" max="10000" maxlength="7" type="text" appInputs>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Región</label>
+                                    <div class="control ">
+                                        <div class="select">
+                                            <select>
+                                          <option disabled>Seleccione</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Zona</label>
+                                    <div class="control ">
+                                        <div class="select">
+                                            <select>
+                                            <option disabled>Seleccione</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column ">
+                                <div class="field ">
+                                    <label class="label is-small ">Comuna</label>
+                                    <div class="control ">
+                                        <div class="select">
+                                            <select>
+                                              <option disabled>Seleccione</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="columns is-centered">
+                            <div class="column is-2 ">
+                                <div class="field">
+                                    <div class="control" style="margin-top: 21px;">
+                                        <a class="button is-info " type="button ">Buscar Stock</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-content">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table" style="padding-top: 10px;" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Stock</th>
+                                    <th>Tiendas</th>
+                                    <th>Retiro</th>
+                                    <th>Flujo</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <a class="button is-danger ">Salir</a>
+                <a class="button is-info ">Guardar</a>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+<!-- <p> se utiliza para renderizar la tabla
+              <button type="button " class="btn waves-effect waves-light blue " (click)="rerender() ">
+                Rerender
+              </button>
+            </p> -->

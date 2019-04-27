@@ -1,0 +1,176 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Emisión unitaria de guías de despacho
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+              <div class="form-columns">
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Seleccione Rut u OC</label>
+                    <div class="control">
+                      <label class="radio">
+                        <input
+                          style="margin-top: 17%;"
+                          type="radio"
+                          name="OCRUT"
+                          value="oc"
+                          (change)="radioButtonChange($event)"
+                          checked
+                        />
+                        N° OC
+                      </label>
+                      <label class="radio">
+                        <input
+                          style="margin-top: 17%;"
+                          type="radio"
+                          name="OCRUT"
+                          value="rut"
+                          (change)="radioButtonChange($event)"
+                        />
+                        RUT/DNI
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <label class="label is-small">Ingrese Rut u OC</label>
+                    <div class="control">
+                      <input
+                        class="input"
+                        type="text"
+                        placeholder="{{ textInput }}"
+                        [(ngModel)]="inputOCRut"
+                        name="InputOCRut"
+                        (change)="hide()"
+                        id="OCRUTID"
+                      />
+                      <span class="tag is-danger" *ngIf="messageValidBoolean">{{
+                        messageValid
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="form-column">
+                    <div class="control">
+                      <Button
+                        style="margin-top: 27%;"
+                        class="button is-success"
+                        (click)="buscarGuiasUnitarias()"
+                      >
+                        Buscar
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+              <div class="card-content">
+                <div class="columns is-desktop">
+                  <div class="column">
+                    <p class="title">
+                      Camiones
+                    </p>
+                    <table
+                      datatable
+                      [dtOptions]="dtOptions"
+                      [dtTrigger]="dtTrigger"
+                      class="row-border hover table"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Patente</th>
+                          <th>Descripci&oacute;n</th>
+                          <th>Cubicaje</th>
+                          <th>N° Bodega</th>
+                          <th>Estado</th>
+                          <th>Inf. Beetrack</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr *ngFor="let gde of arrayGuiaDespacho">
+                          <td>
+                            <input
+                              type="checkbox"
+                              name="isSelected"
+                              [(ngModel)]="gde.isSelected"
+                            />
+                          </td>
+                          <td>{{ gde.modeloDespacho }}</td>
+                          <td>{{ gde.estadoCDU }}</td>
+                          <td>{{ gde.motivoCDU }}</td>
+                          <td>{{ gde.estadoCDU }}</td>
+                          <td>{{ gde.motivoCDU }}</td>
+                        </tr>
+                      </tbody>
+                      <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+                    </table>
+                  </div>
+                  <div class="column">
+                      <p class="title">
+                          Conductores
+                        </p>
+                    <table
+                      datatable
+                      [dtOptions]="dtOptions"
+                      [dtTrigger]="dtTrigger"
+                      class="row-border hover table"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Orden de Compra</th>
+                          <th>Modelo despacho</th>
+                          <th>Estado del CUD</th>
+
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr *ngFor="let gde of arrayGuiaDespacho">
+                          <td>
+                            <input
+                              type="checkbox"
+                              name="isSelected"
+                              [(ngModel)]="gde.isSelected"
+                            />
+                          </td>
+                          <td>{{ gde.modeloDespacho }}</td>
+                          <td>{{ gde.estadoCDU }}</td>
+
+                        </tr>
+                      </tbody>
+                      <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+                    </table>
+                  </div>
+                </div>
+                <div></div>
+              </div>
+            </div>
+            <br />
+            <br />
+            <button class="button is-success" (click)="imprimirGde()">
+              Imprimir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

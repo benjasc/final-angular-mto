@@ -1,0 +1,106 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Emisión masiva de guías de despacho
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <form>
+                  <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                      <label class="label">Sucursal despacho</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field is-narrow">
+                        <div class="control">
+                          <div class="select is-fullwidth">
+                            <select [(ngModel)]="selectBranchOffice">
+                              <option  value='0' selected>Seleccione sucursal</option>
+                              <option *ngFor="let branchOffice of arrayListSucursalesByPais" value="{{branchOffice.officeCode}}">{{branchOffice.officeName}}</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                      <label class="label">N° Manifiesto</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+                          <input class="input" type="text" >
+                        </div>
+                      </div>
+                      <div class="field">
+                          <div class="control">
+                              <Button class="button is-success" (click)='buscarMasivas()'>
+                                  Buscar
+                                  </Button>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+            </form>
+
+
+            <br/>
+            <br/>
+
+
+            <!-- Resultados de la búsqueda , los cuales estaran contenidos dentro de la etiqueta card-->
+            <div class="card">
+                <div class="card-content">
+                  <p class="title">
+                    Resultados de la búsqueda
+                  </p>
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+
+                          <thead>
+                            <tr>
+                              <th>Manifiesto</th>
+                              <th>Cantidad CUD</th>
+                              <th>Cantidad de Bultos</th>
+                              <th>Ver detalle manifiesto</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr *ngFor="let gdeMasivo of arrayEmisionMasiva">
+                              <td>{{gdeMasivo.nManifiesto}}</td>
+                              <td>{{gdeMasivo.cantidadCud}}</td>
+                              <td>{{gdeMasivo.cantidadbultos}}</td>
+                              <td>
+                                <a class="button is-small is-success" (click)='detalleMasivo(gdeMasivo)' >Detalle Manifiesto</a>
+                              </td>
+                            </tr>
+
+                          </tbody>
+                          <!-- <a *ngIf='emailInfo.results.length > 0' class="button is-small is-success" >Exportar</a> -->
+
+                  </table>
+                </div>
+              </div>
+              <br/>
+              <br/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

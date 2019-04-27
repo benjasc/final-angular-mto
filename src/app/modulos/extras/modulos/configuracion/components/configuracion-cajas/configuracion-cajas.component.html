@@ -1,0 +1,134 @@
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Configuraci&oacute;n de Cajas
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+
+        <div class="form-columns" style="margin-left: 2rem; margin-top: 2rem;">
+          <div class="field">
+            <div class="form-column">
+              <label class="label is-small">Sucursal</label>
+              <div class="control">
+                <div class="select" style="width:31rem;">
+                  <select name="documentType" [(ngModel)]="nombreSucursal" (change)="cambiaSucursal()">
+                    <option [value]="0">Seleccione</option>
+                    <option *ngFor="let sucursal of sucursales" [value]="sucursal.nombre">
+                      {{ sucursal.nombre }}
+                  </select>
+                </div>
+                <p class="err">{{textoSucursal}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="field" style="margin-left: 12rem;">
+            <div class="form-column">
+              <label class="label is-small">Caja</label>
+              <div class="control">
+                <div class="select" style="width:31rem;">
+                  <select name="documentType" [(ngModel)]="nombreCaja" (change)="cambiaCaja()">
+                    <option [value]="0">Seleccione</option>
+                    <option *ngFor="let caja of cajas" [value]="caja.nombre">
+                      {{ caja.nombre }}
+                  </select>
+                </div>
+                <p class="err">{{textoCaja}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-columns" style="margin-left: 2rem; margin-top: 2rem;">
+          <div class="field">
+            <div class="form-column" style="width: 43rem;">
+              <label class="label is-small">Configuraci&oacute;n de tareas</label>
+              <table class="table" style="width: 43rem;">
+                <thead>
+                  <tr>
+                    <th>Sucursal</th>
+                    <th>Caja</th>
+                    <th>Cierre Parcial</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="cajaSeleccionada !== null && cajaSeleccionada !== undefined">
+                  <tr *ngFor="let c of cajaSeleccionada.horarioCierreParcial; index as i">
+                    <td>{{ sucursalSeleccionada.nombre }}</td>
+                    <td>{{ cajaSeleccionada.nombre }}</td>
+                    <td>{{ cajaSeleccionada.horarioCierreParcial[i] }}</td>
+                    <td>
+                      <button class="button is-danger" (click)="eliminarCierreParcial(i)">
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="field" style="margin-left: 1.3rem; width: 31.7rem; margin-top: 2.3rem;">
+            <div class="form-column">
+              <label class="label is-small">Horario de Cierre Final</label>
+              <div class="control">
+                <input class="input" type="time" name="HorarioCierreSeleccionado" [disabled]="!horarioActivo"
+                  [(ngModel)]="horarioCierreFinal" (change)="validarHorarioCierre()">
+              </div>
+              <p class="err">{{textoHorarioCierre}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-columns" style="margin-left: 2rem; margin-top: 3rem;">
+          <div class="field">
+            <div class="form-column">
+              <div class="control">
+                <button class="button is-success" (click)="abrirModal()" [disabled]="!validaciones">
+                  Agregar Cierre Parcial
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="form-column">
+              <div class="control">
+                <button class="button is-success" style="margin-left: 37rem;" [disabled]="!validaciones"
+                  (click)="guardarSucursal()">
+                  Guardar Cambios
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal #modalAgregarConfiguracion>
+  <modal-header>
+    <p class="tituloModal">Ingresar nueva tarea</p>
+  </modal-header>
+  <modal-content>
+
+    <div class="form-column">
+      <label class="label is-small" style="margin-left: 15rem;">Cierre Parcial</label>
+      <div class="control">
+        <input class="input" type="time" name="" id="" [(ngModel)]="cierreParcial"
+          style="margin-left: 13rem; width: 9rem;">
+      </div>
+    </div>
+  </modal-content>
+  <modal-footer>
+    <button class="button is-danger" (click)="cerrar()" style="margin-right: 16rem;">Cerrar</button>
+    <button class="button is-success" (click)="agregarCierrePacial()">Guardar</button>
+  </modal-footer>
+</modal>
